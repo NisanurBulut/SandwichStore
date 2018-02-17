@@ -1,6 +1,6 @@
 ﻿namespace CrystalReport_MasterDetail
 {
-    partial class Form1
+    partial class Anasayfa
     {
         /// <summary>
         /// Required designer variable.
@@ -42,14 +42,15 @@
             this.crystalReportViewer1.Size = new System.Drawing.Size(898, 506);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // Form1
+            // Anasayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 506);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Anasayfa";
+            this.Text = "Ana Sayfa";
+            this.Load += new System.EventHandler(this.Anasayfa_Load);
             this.ResumeLayout(false);
 
         }
