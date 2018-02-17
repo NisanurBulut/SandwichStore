@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesInvoiceDetail.cs" />
     <Compile Include="SalesInvoiceHeader.cs" />
     <EmbeddedResource Include="CRmasterdetail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
