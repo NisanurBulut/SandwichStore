@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrystalReport_MasterDetail
 {
-  public  class SalesInvoiceDetail
+    public class SalesInvoiceDetail
     {
         public string InvoiceNo { get; set; }
         public string ItemName { get; set; }

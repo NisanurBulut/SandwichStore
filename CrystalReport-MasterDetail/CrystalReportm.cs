@@ -16,14 +16,14 @@ namespace CrystalReport_MasterDetail {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CRmasterdetail : ReportClass {
+    public class CrystalReportm : ReportClass {
         
-        public CRmasterdetail() {
+        public CrystalReportm() {
         }
         
         public override string ResourceName {
             get {
-                return "CRmasterdetail.rpt";
+                return "CrystalReportm.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CrystalReport_MasterDetail {
         
         public override string FullResourceName {
             get {
-                return "CrystalReport_MasterDetail.CRmasterdetail.rpt";
+                return "CrystalReport_MasterDetail.CrystalReportm.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace CrystalReport_MasterDetail {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCRmasterdetail : Component, ICachedReport {
+    public class CachedCrystalReportm : Component, ICachedReport {
         
-        public CachedCRmasterdetail() {
+        public CachedCrystalReportm() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace CrystalReport_MasterDetail {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CRmasterdetail rpt = new CRmasterdetail();
+            CrystalReportm rpt = new CrystalReportm();
             rpt.Site = this.Site;
             return rpt;
         }

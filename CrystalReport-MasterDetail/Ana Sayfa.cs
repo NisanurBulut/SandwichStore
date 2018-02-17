@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,7 +73,17 @@ namespace CrystalReport_MasterDetail
 
         private void Anasayfa_Load(object sender, EventArgs e)
         {
+            NesneYukle();
 
+            ReportDocument isObjectsReportm = new ReportDocument();
+          
+            string reportPathm = @"C:\Users\dualsoft\Source\Repos\CrystalReport-MasterDetail\CrystalReport-MasterDetail\CrystalReportm.rpt";
+            isObjectsReportm.Load(reportPathm);
+          
+            isObjectsReportm.Database.Tables[0].SetDataSource(header);
+            isObjectsReportm.Subreports[0].Database.Tables[0].SetDataSource(detail);
+            crystalReportViewer1.ReportSource = isObjectsReportm;
+           
         }
     }
 }
