@@ -6,7 +6,7 @@ import BuildControls from '../../components/BuildControls/BuildControls';
 class PizzaBuilder extends Component {
     state = {
         ingredients:{
-            pepperoni:14,
+            pepperoni:25,
             oil:5
         }
     }
