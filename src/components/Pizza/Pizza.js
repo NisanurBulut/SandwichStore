@@ -1,7 +1,7 @@
 import React from 'react';
-import './Pizza.css';
-import PizzaIngredient from '../PizzaIngredient/PizzaIngredient';
-const pizza = (props) => {
+import './Sandwich.css';
+import SandwichIngredient from '../SandwichIngredient/SandwichIngredient';
+const Sandwich = (props) => {
   function getToppingPosition(toppingRadius){
     var posX, posY;
     posX = -400-(Math.floor(Math.random() * ((325 * 2) - 1)));
@@ -13,7 +13,7 @@ const pizza = (props) => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         var position=getToppingPosition(-15);
         console.log(position);
-        return <PizzaIngredient key={igKey + i} type={igKey} />;
+        return <SandwichIngredient key={igKey + i} type={igKey} />;
       });
     })
     .reduce((arr, el) => {
@@ -24,13 +24,13 @@ const pizza = (props) => {
   }
   return (
     <div>
-      <div className="Pizza">
-        <PizzaIngredient type="crust" />
-        <PizzaIngredient type="cheese" />
+      <div className="Sandwich">
+        <SandwichIngredient type="crust" />
+        <SandwichIngredient type="cheese" />
         {transformedIngredients}
       </div>
     </div>
   );
 };
 
-export default pizza;
+export default Sandwich;

@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Layout from './components/Layout/Layout';
-import PizzaBuilder from './containers/PizzaBuilder/PizzaBuilder';
+import SandwichBuilder from './containers/SandwichBuilder/SandwichBuilder';
 function App() {
   return (
     <div>
       <Layout>
         <p>Test</p>
-        <PizzaBuilder />
+        <SandwichBuilder />
       </Layout>
     </div>
   );

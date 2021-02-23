@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Auxiliary from '../../hoc/Auxiliary';
-import Pizza from '../../components/Pizza/Pizza';
+import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
 
-class PizzaBuilder extends Component {
+class SandwichBuilder extends Component {
     state = {
         ingredients:{
             pepperoni:25,
@@ -13,10 +13,10 @@ class PizzaBuilder extends Component {
     render() {
         return (
             <Auxiliary>
-                <Pizza ingredients={this.state.ingredients} />
+                <Sandwich ingredients={this.state.ingredients} />
                 <BuildControls />
             </Auxiliary>
         )
     }
 }
-export default PizzaBuilder;
+export default SandwichBuilder;
