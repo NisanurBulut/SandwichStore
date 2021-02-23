@@ -15,7 +15,11 @@ class PizzaIngredient extends Component {
         break;
       }
       case 'pepperoni': {
-        ingredient = <div className="pepperoni pep1"></div>;
+        ingredient = <div className="pepperoni"></div>;
+        break;
+      }
+      case 'pep1': {
+        ingredient = <div className="pep1"></div>;
         break;
       }
       default:
