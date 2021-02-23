@@ -15,7 +15,7 @@ class PizzaIngredient extends Component {
         break;
       }
       case 'pepperoni': {
-        ingredient = <div className="pepperoni"></div>;
+        ingredient = <div className="pepperoni" style={{top:this.props.posx, left:this.props.posy}}></div>;
         break;
       }
       case 'oil': {
