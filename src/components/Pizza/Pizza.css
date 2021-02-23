@@ -6,8 +6,76 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
+    position: relative;
 }
 
+
+  .crust {
+    width: 300px;
+    height: 300px;
+    background: burlywood;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+  }
+
+  .cheese {
+    width: 200px;
+    height: 200px;
+    background: gold;
+    border-radius: 100px;
+    position: relative;
+    top: -250px;
+    left: 50px;
+  }
+  .oil {
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 5px;
+  }
+  .pepperoni {
+    width: 30px;
+    height: 30px;
+    background: firebrick;
+    border-radius: 15px;
+  }
+  .oil1 {
+    position: relative;
+    top: -400px;
+    left: 85px;
+  }
+  .pep1 {
+    position: relative;
+    top: -400px;
+    left: 80px;
+  }
+
+  .pep2 {
+    position: relative;
+    top: -350px;
+    left: 70px;
+  }
+  .pep3 {
+    position: relative;
+    top: -395px;
+    left: 200px;
+  }
+  .pep4 {
+    position: relative;
+    top: -380px;
+    left: 115px;
+  }
+   .pep5 {
+    position: relative;
+    top: -365px;
+    right: 100px;
+  }
+  .pep6 {
+    position: relative;
+    top: -575px;
+    left: 150px;
+  }
 @media(min-width:500px) and (min-height:400px){
     .Pizza{
         width: 350px;
