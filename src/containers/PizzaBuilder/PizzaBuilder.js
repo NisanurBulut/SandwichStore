@@ -6,7 +6,7 @@ class PizzaBuilder extends Component {
     state = {
         ingredients:{
             pepperoni:0,
-            oil:1
+            oil:0
         }
     }
     render() {
