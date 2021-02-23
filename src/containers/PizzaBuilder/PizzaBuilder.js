@@ -5,7 +5,8 @@ import Pizza from '../../components/Pizza/Pizza';
 class PizzaBuilder extends Component {
     state = {
         ingredients:{
-            pep1:1
+            pepperoni:0,
+            oil:1
         }
     }
     render() {

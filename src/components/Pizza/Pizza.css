@@ -10,20 +10,6 @@
 }
 
 
-
-  .oil {
-    width: 10px;
-    height: 10px;
-    background: #000;
-    border-radius: 5px;
-  }
-
-  .oil1 {
-    position: relative;
-    top: -400px;
-    left: 85px;
-  }
-
 @media(min-width:500px) and (min-height:400px){
     .Pizza{
         width: 350px;

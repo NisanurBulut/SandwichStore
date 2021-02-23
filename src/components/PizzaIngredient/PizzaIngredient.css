@@ -8,48 +8,30 @@
 }
 
 .cheese {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background: gold;
-  border-radius: 100px;
+  border-radius: 125px;
   position: relative;
-  top: -250px;
-  left: 50px;
+  top: -275px;
+  left: 25px;
 }
 .pepperoni {
   width: 30px;
   height: 30px;
   background: firebrick;
   border-radius: 15px;
-}
-.pep1 {
-  position: relative;
   top: -400px;
   left: 80px;
+  position: relative;
 }
 
-.pep2 {
+.oil {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 5px;
   position: relative;
-  top: -350px;
-  left: 70px;
-}
-.pep3 {
-  position: relative;
-  top: -395px;
-  left: 200px;
-}
-.pep4 {
-  position: relative;
-  top: -380px;
-  left: 115px;
-}
- .pep5 {
-  position: relative;
-  top: -365px;
-  right: 100px;
-}
-.pep6 {
-  position: relative;
-  top: -575px;
-  left: 150px;
+  top: -400px;
+  left: 85px;
 }

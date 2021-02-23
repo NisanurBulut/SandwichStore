@@ -18,8 +18,8 @@ class PizzaIngredient extends Component {
         ingredient = <div className="pepperoni"></div>;
         break;
       }
-      case 'pep1': {
-        ingredient = <div className="pep1"></div>;
+      case 'oil': {
+        ingredient = <div className="oil"></div>;
         break;
       }
       default:
