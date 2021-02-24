@@ -1,5 +1,6 @@
 import React from 'react';
-import './Sandwich.css';
+import classes from './Sandwich.module.css';
+
 import SandwichIngredient from '../SandwichIngredient/SandwichIngredient';
 const Sandwich = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
@@ -16,9 +17,9 @@ const Sandwich = (props) => {
   }
   return (
     <div>
-      <div className="Sandwich">
-        <SandwichIngredient type="crust" />
-        <SandwichIngredient type="cheese" />
+      <div className={classes.Sandwich}>
+        <SandwichIngredient type="bread-top" />
+        <SandwichIngredient type="bread-bottom" />
         {transformedIngredients}
       </div>
     </div>
