@@ -5,7 +5,6 @@ import SandwichIngredient from '../SandwichIngredient/SandwichIngredient';
 const Sandwich = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey) => {
-      debugger;
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         return <SandwichIngredient key={igKey + i} type={igKey} />;
       });
