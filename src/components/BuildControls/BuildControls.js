@@ -1,5 +1,5 @@
 import React from 'react';
-import './BuildControls.css';
+import classes from './BuildControls.module.css';
 import BuildControl from './BuildControl/BuildControl';
 
 const BuildControls = (props) => {
@@ -8,7 +8,7 @@ const BuildControls = (props) => {
     { label: 'pepper', type: 'pepper' },
   ];
   return (
-    <div className="BuildControls">
+    <div className={classes.BuildControls}>
       {controls.map((ctrl) => {
         return <BuildControl key={ctrl.label} label={ctrl.label} />;
       })}
