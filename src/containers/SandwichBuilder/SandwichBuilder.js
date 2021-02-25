@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
+import classes from './SandwichBuilder.module.css';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -53,15 +54,28 @@ class SandwichBuilder extends Component {
           disabledInfo[key]= disabledInfo[key]<=0
       }
     return (
-      <Auxiliary>
-        <Sandwich ingredients={this.state.ingredients} />
-        <BuildControls
+      <div className={classes.row}>
+
+<div className={classes.column}>
+<Sandwich className={classes.column} ingredients={this.state.ingredients}/>
+</div>
+<div className={classes.column}>
+<BuildControls className={classes.column}
           ingredientAdded={this.addIngredientHandler}
           ingredientRemoved={this.removeIngredientHandler}
           disabled={disabledInfo}
           price={this.state.totalPrice}
         />
-      </Auxiliary>
+</div>
+       {/*
+        <BuildControls className={classes.column}
+          ingredientAdded={this.addIngredientHandler}
+          ingredientRemoved={this.removeIngredientHandler}
+          disabled={disabledInfo}
+          price={this.state.totalPrice}
+        /> */}
+
+      </div>
     );
   }
 }
