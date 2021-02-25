@@ -1,10 +1,11 @@
 import React from 'react';
 import classes from './Sandwich.module.css';
-
 import SandwichIngredient from '../SandwichIngredient/SandwichIngredient';
+
 const Sandwich = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey) => {
+      debugger;
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         return <SandwichIngredient key={igKey + i} type={igKey} />;
       });
@@ -19,8 +20,8 @@ const Sandwich = (props) => {
     <div>
       <div className={classes.Sandwich}>
         <SandwichIngredient type="bread-top" />
-        <SandwichIngredient type="bread-bottom" />
         {transformedIngredients}
+        <SandwichIngredient type="bread-bottom" />
       </div>
     </div>
   );

@@ -10,6 +10,14 @@ class SandwichIngredient extends Component {
         ingredient = <div className={classes.BreadBottom}></div>;
         break;
       }
+      case 'bacon': {
+        ingredient = <div className={classes.Bacon}></div>;
+        break;
+      }
+      case 'salad': {
+        ingredient = <div className={classes.Salad}></div>;
+        break;
+      }
       case 'bread-top': {
         ingredient = <div className={classes.BreadTop}></div>;
         break;
