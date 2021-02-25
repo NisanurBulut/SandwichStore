@@ -5,4 +5,4 @@ If you like or are using this project to learn or start your solution, please gi
 ### Sandwich Builder
 - The props type control is done
 
-![Sandwich Builder](https://github.com/NisanurBulut/BakTraCam/blob/master/BakTraCam.ClientApp/src/assets/Trailer/app.gif)
+![Sandwich Builder](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichBuilder.gif)
