@@ -23,6 +23,10 @@ class SandwichBuilder extends Component {
     },
     totalPrice: 0,
     purchasable: false,
+    purchasing: false,
+  };
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
   };
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
@@ -72,27 +76,28 @@ class SandwichBuilder extends Component {
     }
     return (
       <Auxiliary>
-        <GeneralModal>
+        <GeneralModal show={this.state.purchasing}>
           <OrderSummary ingredients={this.state.ingredients} />
         </GeneralModal>
         <div className={classes.row}>
-        <div className={classes.column}>
-          <Sandwich
-            className={classes.column}
-            ingredients={this.state.ingredients}
-          />
+          <div className={classes.column}>
+            <Sandwich
+              className={classes.column}
+              ingredients={this.state.ingredients}
+            />
+          </div>
+          <div className={classes.column}>
+            <BuildControls
+              className={classes.column}
+              ingredientAdded={this.addIngredientHandler}
+              ingredientRemoved={this.removeIngredientHandler}
+              disabled={disabledInfo}
+              price={this.state.totalPrice}
+              purchasable={this.state.purchasable}
+              ordered={this.purchaseHandler}
+            />
+          </div>
         </div>
-        <div className={classes.column}>
-          <BuildControls
-            className={classes.column}
-            ingredientAdded={this.addIngredientHandler}
-            ingredientRemoved={this.removeIngredientHandler}
-            disabled={disabledInfo}
-            price={this.state.totalPrice}
-            purchasable={this.state.purchasable}
-          />
-        </div>
-      </div>
       </Auxiliary>
     );
   }
