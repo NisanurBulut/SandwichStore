@@ -67,6 +67,9 @@ class SandwichBuilder extends Component {
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     this.updatePurchaseState(updatedIngredients);
   };
+  purchaseCancelHandler = () => {
+    this.setState({ purchasing: false });
+  };
   render() {
     const disabledInfo = {
       ...this.state.ingredients,
@@ -76,7 +79,10 @@ class SandwichBuilder extends Component {
     }
     return (
       <Auxiliary>
-        <GeneralModal show={this.state.purchasing}>
+        <GeneralModal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCancelHandler}
+        >
           <OrderSummary ingredients={this.state.ingredients} />
         </GeneralModal>
         <div className={classes.row}>
