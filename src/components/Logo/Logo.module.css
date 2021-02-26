@@ -1,9 +1,13 @@
 .Logo{
-    background-color: #fff;
-    padding: 8px;
-    height: 100%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 }
-
+.Logo p {
+    font-size: 900;
+}
 .Logo img{
     height: 100%;
 }
