@@ -1,7 +1,10 @@
-.Label{
+p{
     font-style: oblique;
 }
 .btnGroup{
     display: flex;
     justify-content: space-between;
+}
+.priceLabel{
+    text-align: center;
 }
