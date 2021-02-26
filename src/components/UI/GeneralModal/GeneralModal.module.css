@@ -4,7 +4,8 @@
     background-color: white;
     width: 70%;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px black;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #888888;
     padding: 16px;
     left: 15%;
     top: 30%;
