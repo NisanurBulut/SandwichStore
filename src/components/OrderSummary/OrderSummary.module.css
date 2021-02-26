@@ -1,3 +1,7 @@
 .Label{
     font-style: oblique;
 }
+.btnGroup{
+    display: flex;
+    justify-content: space-between;
+}
