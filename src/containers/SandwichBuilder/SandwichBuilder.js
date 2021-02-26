@@ -15,10 +15,23 @@ class SandwichBuilder extends Component {
   state = {
     ingredients: {
       salad: 0,
-      bacon: 5,
+      bacon: 0,
+      cheese: 0,
+      meat: 0,
     },
-    totalPrice: 4,
+    totalPrice: 0,
+    purchasable: false,
   };
+  updatePurchaseState(ingredients) {
+    const sum = Object.keys(ingredients)
+      .map((igKey) => {
+        return ingredients[igKey];
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ purchasable: sum > 0 });
+  }
   addIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
     const updatedCounted = oldCount + 1;
@@ -30,6 +43,7 @@ class SandwichBuilder extends Component {
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
   };
   removeIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
@@ -45,36 +59,33 @@ class SandwichBuilder extends Component {
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice - priceDeduction;
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
   };
   render() {
-      const disabledInfo={
-          ...this.state.ingredients
-      };
-      for(let key in disabledInfo){
-          disabledInfo[key]= disabledInfo[key]<=0
-      }
+    const disabledInfo = {
+      ...this.state.ingredients,
+    };
+    for (let key in disabledInfo) {
+      disabledInfo[key] = disabledInfo[key] <= 0;
+    }
     return (
       <div className={classes.row}>
-
-<div className={classes.column}>
-<Sandwich className={classes.column} ingredients={this.state.ingredients}/>
-</div>
-<div className={classes.column}>
-<BuildControls className={classes.column}
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          price={this.state.totalPrice}
-        />
-</div>
-       {/*
-        <BuildControls className={classes.column}
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          price={this.state.totalPrice}
-        /> */}
-
+        <div className={classes.column}>
+          <Sandwich
+            className={classes.column}
+            ingredients={this.state.ingredients}
+          />
+        </div>
+        <div className={classes.column}>
+          <BuildControls
+            className={classes.column}
+            ingredientAdded={this.addIngredientHandler}
+            ingredientRemoved={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            price={this.state.totalPrice}
+            purchasable={this.state.purchasable}
+          />
+        </div>
       </div>
     );
   }

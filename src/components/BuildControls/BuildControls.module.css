@@ -3,8 +3,53 @@
     font-weight: 600;
     display: flex;
     flex-flow: column;
-    align-items: center;
     box-shadow: 0 2px 1px #ccc;
     margin: auto;
     padding: 10px 0;
+    align-items:flex-end;
+}
+.PriceLabel{
+    text-align: center !important;
+}
+.OrderButton {
+    background-color: #61bdc2ad;
+    outline: none;
+    cursor: pointer;
+    color: #666363;
+    font-family: inherit;
+    font-size: 1.2em;
+    margin: 10px 10px;
+    padding: 10px 15px;
+    outline: none;
+    border:0;
+    border-radius: 5px;
+    width: 200px;
+
+}
+
+.OrderButton:hover, .OrderButton:active {
+    background-color:#34898e;
+    color: #fff;
+}
+
+.OrderButton:disabled {
+    background-color: #C7C6C6;
+    cursor: not-allowed;
+    color: #888888;
+}
+
+.OrderButton:not(:disabled) {
+    animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
