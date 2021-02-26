@@ -1,7 +1,8 @@
 import React from 'react';
+import classes from './GeneralModal.module.css';
 
 const GeneralModal=(props)=>{
-    <div>
+    <div className={classes.Modal}>
         {
             props.children
         }

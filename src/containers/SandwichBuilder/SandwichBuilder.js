@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Auxiliary from '../../hoc/Auxiliary';
+import GeneralModal from '../../components/UI/GeneralModal/GeneralModal';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
 import classes from './SandwichBuilder.module.css';
+import Auxiliary from '../../hoc/Auxiliary';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -69,7 +70,9 @@ class SandwichBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
     return (
-      <div className={classes.row}>
+      <Auxiliary>
+        <GeneralModal />
+        <div className={classes.row}>
         <div className={classes.column}>
           <Sandwich
             className={classes.column}
@@ -87,6 +90,7 @@ class SandwichBuilder extends Component {
           />
         </div>
       </div>
+      </Auxiliary>
     );
   }
 }
