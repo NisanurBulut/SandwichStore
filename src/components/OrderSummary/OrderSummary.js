@@ -4,6 +4,7 @@ import CustomButton from '../UI/Button/CustomButton';
 import classes from './OrderSummary.module.css';
 
 const OrderSummary = (props) => {
+  console.log(props);
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li key={igKey}>
