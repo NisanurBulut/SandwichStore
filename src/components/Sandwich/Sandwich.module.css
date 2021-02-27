@@ -10,9 +10,9 @@
 }
 
 
-@media(min-width:500px) and (min-height:400px){
+@media(min-width:800px) and (min-height:400px){
     .Sandwich{
-        width: 350px;
+        width: 550px;
         height: 300px;
     }
 }

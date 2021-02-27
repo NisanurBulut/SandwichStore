@@ -6,7 +6,6 @@ import classes from './Toolbar.module.css';
 const Toolbar=()=>{
     return (
         <header className={classes.Toolbar}>
-           <div>Menü</div>
            <Logo />
            <nav>
                <NavigationItems />
