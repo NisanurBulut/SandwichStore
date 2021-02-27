@@ -11,7 +11,7 @@
     text-decoration: none;
     height: 100%;
     padding:16px 10px;
-    border-bottom: 4px solid transparent;
+    border-bottom: none;
     box-sizing: border-box;
     display: block;
 }
