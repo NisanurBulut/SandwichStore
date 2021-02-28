@@ -3,7 +3,7 @@ import GeneralModal from '../../components/UI/GeneralModal/GeneralModal';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
 import classes from './SandwichBuilder.module.css';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {

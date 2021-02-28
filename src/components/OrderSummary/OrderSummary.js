@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import CustomButton from '../UI/Button/CustomButton';
 import classes from './OrderSummary.module.css';
 
