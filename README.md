@@ -11,7 +11,7 @@ If you like or are using this project to learn or start your solution, please gi
 - The order can be canceled
 
 
-![Sandwich Builder](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichBuilder.gif)
+![Sandwich Builder](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
 ### HelpFull Websites
 [cheeseburger-css-div](https://github.com/lesscake/cheeseburger-css-div)
