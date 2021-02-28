@@ -5,7 +5,7 @@ import classes from './Logo.module.css';
 const Logo=(props)=>{
     return (
         <div className={classes.Logo}>
-            <p>My Sandwich Builder</p>
+            <p>My Sandwich Store</p>
             <img src={logo} alt="MySandwich"/>
         </div>
     )
