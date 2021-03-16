@@ -13,5 +13,10 @@ If you like or are using this project to learn or start your solution, please gi
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
+### Installations
+
+- npm install json-server
+- npm install --save axios
+
 ### HelpFull Websites
 [cheeseburger-css-div](https://github.com/lesscake/cheeseburger-css-div)
