@@ -7,6 +7,7 @@ import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/orders-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -143,4 +144,4 @@ class SandwichBuilder extends Component {
     );
   }
 }
-export default SandwichBuilder;
+export default WithErrorHandler(SandwichBuilder, axios);
