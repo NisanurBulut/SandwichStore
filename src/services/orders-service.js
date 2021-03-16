@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const oderService = axios.create({
+const orderService = axios.create({
   baseURL: ' http://localhost:3001/',
 });
 

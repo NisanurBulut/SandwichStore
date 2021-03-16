@@ -5,6 +5,7 @@ import BuildControls from '../../components/BuildControls/BuildControls';
 import classes from './SandwichBuilder.module.css';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import axios from '../../services/orders-service';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -71,7 +72,24 @@ class SandwichBuilder extends Component {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    alert('Hello Nisanur');
+    const order = {
+      ingredients: this.state.ingredients,
+      price: this.state.totalPrice,
+      customer: {
+        name: 'Nisanur Bulut',
+        address: 'Eskişehir',
+      },
+      email: 'nisanur@gmail.com',
+      deliveryMethod: 'fastest',
+    };
+    axios
+      .post('orders', order)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   render() {
     const disabledInfo = {
@@ -87,10 +105,11 @@ class SandwichBuilder extends Component {
           modalClosed={this.purchaseCancelHandler}
         >
           <OrderSummary
-          price={this.state.totalPrice}
-          ingredients={this.state.ingredients}
-          purchaseCancelled={this.purchaseCancelHandler}
-          purchaseContinued={this.purchaseContinueHandler} />
+            price={this.state.totalPrice}
+            ingredients={this.state.ingredients}
+            purchaseCancelled={this.purchaseCancelHandler}
+            purchaseContinued={this.purchaseContinueHandler}
+          />
         </GeneralModal>
         <div className={classes.row}>
           <div className={classes.column}>
