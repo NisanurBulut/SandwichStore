@@ -6,6 +6,7 @@ import classes from './SandwichBuilder.module.css';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/orders-service';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -72,6 +73,7 @@ class SandwichBuilder extends Component {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
+    this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
@@ -84,10 +86,11 @@ class SandwichBuilder extends Component {
     };
     axios
       .post('orders', order)
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        this.setState({ loading: false, purchasing:false });
       })
       .catch((err) => {
+        this.setState({ loading: false, purchasing:false });
         console.log(err);
       });
   };
@@ -98,18 +101,24 @@ class SandwichBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
+    let orderSummary = (
+      <OrderSummary
+        price={this.state.totalPrice}
+        ingredients={this.state.ingredients}
+        purchaseCancelled={this.purchaseCancelHandler}
+        purchaseContinued={this.purchaseContinueHandler}
+      />
+    );
+    if (this.state.loading) {
+      orderSummary = <Spinner />;
+    }
     return (
       <Auxiliary>
         <GeneralModal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary
-            price={this.state.totalPrice}
-            ingredients={this.state.ingredients}
-            purchaseCancelled={this.purchaseCancelHandler}
-            purchaseContinued={this.purchaseContinueHandler}
-          />
+          {orderSummary}
         </GeneralModal>
         <div className={classes.row}>
           <div className={classes.column}>
