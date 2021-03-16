@@ -3,8 +3,10 @@ import classes from './Sandwich.module.css';
 import SandwichIngredient from '../SandwichIngredient/SandwichIngredient';
 
 const Sandwich = (props) => {
+  console.log(props.ingredients);
   let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey) => {
+      console.log(igKey);
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         return <SandwichIngredient key={igKey + i} type={igKey} />;
       });

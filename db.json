@@ -1,4 +1,10 @@
 {
+  "ingredients" : {
+    "meat" : 0,
+    "salad" : 0,
+    "cheese":0,
+    "bacon":0
+  },
   "orders": [
     {
       "ingredients": {

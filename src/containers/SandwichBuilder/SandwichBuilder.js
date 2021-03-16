@@ -5,9 +5,9 @@ import BuildControls from '../../components/BuildControls/BuildControls';
 import classes from './SandwichBuilder.module.css';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
-import axios from '../../services/orders-service';
+import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import WithErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -18,16 +18,22 @@ const INGREDIENT_PRICES = {
 
 class SandwichBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
   };
+  componentDidMount() {
+    axios
+      .get('ingredients')
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ ingredients: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
   };
@@ -42,6 +48,8 @@ class SandwichBuilder extends Component {
     this.setState({ purchasable: sum > 0 });
   }
   addIngredientHandler = (type) => {
+    console.log(this.state.ingredients);
+    console.log(this.state.ingredients.type);
     const oldCount = this.state.ingredients[type];
     const updatedCounted = oldCount + 1;
     const updatedIngredients = {
@@ -88,10 +96,10 @@ class SandwichBuilder extends Component {
     axios
       .post('orders', order)
       .then((response) => {
-        this.setState({ loading: false, purchasing:false });
+        this.setState({ loading: false, purchasing: false });
       })
       .catch((err) => {
-        this.setState({ loading: false, purchasing:false });
+        this.setState({ loading: false, purchasing: false });
         console.log(err);
       });
   };
@@ -102,14 +110,41 @@ class SandwichBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
-    let orderSummary = (
-      <OrderSummary
-        price={this.state.totalPrice}
-        ingredients={this.state.ingredients}
-        purchaseCancelled={this.purchaseCancelHandler}
-        purchaseContinued={this.purchaseContinueHandler}
-      />
-    );
+    let orderSummary = null;
+    let sandwich = <Spinner />;
+    if (this.state.ingredients) {
+      sandwich = (
+        <Auxiliary>
+          <div className={classes.row}>
+            <div className={classes.column}>
+              <Sandwich
+                className={classes.column}
+                ingredients={this.state.ingredients}
+              />
+            </div>
+            <div className={classes.column}>
+              <BuildControls
+                className={classes.column}
+                ingredientAdded={this.addIngredientHandler}
+                ingredientRemoved={this.removeIngredientHandler}
+                disabled={disabledInfo}
+                price={this.state.totalPrice}
+                purchasable={this.state.purchasable}
+                ordered={this.purchaseHandler}
+              />
+            </div>
+          </div>
+        </Auxiliary>
+      );
+      (
+        <OrderSummary
+          price={this.state.totalPrice}
+          ingredients={this.state.ingredients}
+          purchaseCancelled={this.purchaseCancelHandler}
+          purchaseContinued={this.purchaseContinueHandler}
+        />
+      );
+    }
     if (this.state.loading) {
       orderSummary = <Spinner />;
     }
@@ -121,25 +156,7 @@ class SandwichBuilder extends Component {
         >
           {orderSummary}
         </GeneralModal>
-        <div className={classes.row}>
-          <div className={classes.column}>
-            <Sandwich
-              className={classes.column}
-              ingredients={this.state.ingredients}
-            />
-          </div>
-          <div className={classes.column}>
-            <BuildControls
-              className={classes.column}
-              ingredientAdded={this.addIngredientHandler}
-              ingredientRemoved={this.removeIngredientHandler}
-              disabled={disabledInfo}
-              price={this.state.totalPrice}
-              purchasable={this.state.purchasable}
-              ordered={this.purchaseHandler}
-            />
-          </div>
-        </div>
+        {sandwich}
       </Auxiliary>
     );
   }
