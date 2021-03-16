@@ -22,16 +22,18 @@ class SandwichBuilder extends Component {
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
+    loading: false,
+    error: false,
   };
   componentDidMount() {
     axios
       .get('ingredients')
       .then((response) => {
         console.log(response.data);
-        this.setState({ ingredients: response.data });
+        this.setState({ ingredients: response.data, loading: false });
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({ loading: false, error: true });
       });
   }
   purchaseHandler = () => {
@@ -48,8 +50,6 @@ class SandwichBuilder extends Component {
     this.setState({ purchasable: sum > 0 });
   }
   addIngredientHandler = (type) => {
-    console.log(this.state.ingredients);
-    console.log(this.state.ingredients.type);
     const oldCount = this.state.ingredients[type];
     const updatedCounted = oldCount + 1;
     const updatedIngredients = {
@@ -111,7 +111,12 @@ class SandwichBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
     let orderSummary = null;
-    let sandwich = <Spinner />;
+    let sandwich = this.state.error ? (
+      <p>Ingredients doesnt load</p>
+    ) : (
+      <Spinner />
+    );
+
     if (this.state.ingredients) {
       sandwich = (
         <Auxiliary>
@@ -136,14 +141,12 @@ class SandwichBuilder extends Component {
           </div>
         </Auxiliary>
       );
-      (
-        <OrderSummary
-          price={this.state.totalPrice}
-          ingredients={this.state.ingredients}
-          purchaseCancelled={this.purchaseCancelHandler}
-          purchaseContinued={this.purchaseContinueHandler}
-        />
-      );
+      orderSummary = <OrderSummary
+        price={this.state.totalPrice}
+        ingredients={this.state.ingredients}
+        purchaseCancelled={this.purchaseCancelHandler}
+        purchaseContinued={this.purchaseContinueHandler}
+      />;
     }
     if (this.state.loading) {
       orderSummary = <Spinner />;
