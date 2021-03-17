@@ -1,0 +1,15 @@
+.CheckoutSummary {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 2px 3px #ccc;
+    border:1px solid #eee;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+@media (min-width:600px){
+    .CheckoutSummary {
+        width: 500px;
+    }
+}
