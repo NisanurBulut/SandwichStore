@@ -104,15 +104,15 @@ class SandwichBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
-    let orderSummary = null;
-    let sandwich = this.state.error ? (
+    let orderSummaryElement = null;
+    let sandwichElement = this.state.error ? (
       <p>Ingredients doesnt load</p>
     ) : (
       <Spinner />
     );
 
     if (this.state.ingredients) {
-      sandwich = (
+      sandwichElement = (
         <Auxiliary>
           <div className={classes.row}>
             <div className={classes.column}>
@@ -135,7 +135,7 @@ class SandwichBuilder extends Component {
           </div>
         </Auxiliary>
       );
-      orderSummary = (
+      orderSummaryElement = (
         <OrderSummary
           price={this.state.totalPrice}
           ingredients={this.state.ingredients}
@@ -145,7 +145,7 @@ class SandwichBuilder extends Component {
       );
     }
     if (this.state.loading) {
-      orderSummary = <Spinner />;
+      orderSummaryElement = <Spinner />;
     }
     return (
       <Auxiliary>
@@ -153,9 +153,9 @@ class SandwichBuilder extends Component {
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          {orderSummary}
+          {orderSummaryElement}
         </GeneralModal>
-        {sandwich}
+        {sandwichElement}
       </Auxiliary>
     );
   }
