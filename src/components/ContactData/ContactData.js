@@ -1,20 +1,43 @@
 import React, { Component } from 'react'
 import CustomButton from '../UI/Button/CustomButton';
 import classes from './ContactData.module.css';
-import { Form, Input, Grid } from 'semantic-ui-react';
-
+import { Form, Grid } from 'semantic-ui-react';
+import axios from '../../services/general-service';
 class ContactData extends Component {
    state = {
-       name:'',
-       email:'',
-       address:''
+       address:{
+        name:'',
+        email:'',
+        address:''
+       },
+       loading:false
    }
-   orderHandler =()=>{
-
+   orderHandler =(event)=>{
+       event.preventDefault();
+           this.setState({ loading: true });
+    const order = {
+      ingredients: this.props.ingredients,
+      price: this.props.price,
+      customer: {
+        name: 'Nisanur Bulut',
+        address: 'Eskişehir',
+      },
+      email: 'nisanur@gmail.com',
+      deliveryMethod: 'fastest',
+    };
+    axios
+      .post('orders', order)
+      .then((response) => {
+        this.setState({ loading: false});
+      })
+      .catch((err) => {
+        this.setState({ loading: false});
+        console.log(err);
+      });
    }
     render() {
         return (
-            <div>
+            <div className={classes.ContactData}>
                 <br/>
                <h1><center><i>Contact Information</i></center></h1>
                 <Form>
