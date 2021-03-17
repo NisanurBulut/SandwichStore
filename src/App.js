@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
 
+
 class App extends Component {
   render() {
     return (

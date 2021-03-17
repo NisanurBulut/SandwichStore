@@ -4,6 +4,7 @@ import classes from './Orders.module.css';
 import axios from '../../services/general-service';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { Grid, Card, Transition } from 'semantic-ui-react';
 
 class Orders extends Component {
   state = {
@@ -31,15 +32,22 @@ class Orders extends Component {
     if (this.state.loading) {
       return <Spinner />;
     } else {
-     return <div className={classes.Orders}>
+     return (
+     <Grid columns={4}>
+     <Grid.Row>
+     <Transition.Group className={classes.Orders}>
         {this.state.orders.map((order) => (
+     <Grid.Column>
           <Order
             key={order.id}
             ingredients={order.ingredients}
             price={order.price}
           />
+        </Grid.Column>
         ))}
-      </div>;
+      </Transition.Group>
+     </Grid.Row>
+     </Grid>)
     }
   }
 }
