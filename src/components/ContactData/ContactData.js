@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CustomButton from '../UI/Button/CustomButton';
 import classes from './ContactData.module.css';
+import { Form, Input, Grid } from 'semantic-ui-react';
 
 class ContactData extends Component {
    state = {
@@ -11,14 +12,19 @@ class ContactData extends Component {
 
     render() {
         return (
-            <div className={classes.ContactData}>
-                <h1>enter your contact</h1>
-                <form>
-                    <input type="text" name="name" placeholder="name" />
-                    <input type="email" name="email" placeholder="email" />
-                    <input type="text" name="address" placeholder="address" />
+            <div>
+                <br/>
+               <h1><center><i>Contact Information</i></center></h1>
+                <Form>
+                    <Grid>
+                    <Form.Group inline widths="equal">
+                    <Form.Input size="small" fluid type="text" label="Name" placeholder="Name" name="name" />
+                    <Form.Input size="small" type="email" label="Email" placeholder="Email" name="email" />
+                    <Form.Input size="small" type="text" label="Address" placeholder="Address" name="address" />
+                   </Form.Group>
+                    </Grid>
                     <CustomButton btnType='Success'>Order</CustomButton>
-                </form>
+                </Form>
             </div>
         )
     }
