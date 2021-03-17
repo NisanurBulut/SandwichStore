@@ -9,7 +9,9 @@ class ContactData extends Component {
        email:'',
        address:''
    }
+   orderHandler =()=>{
 
+   }
     render() {
         return (
             <div>
@@ -23,7 +25,7 @@ class ContactData extends Component {
                     <Form.Input size="small" type="text" label="Address" placeholder="Address" name="address" />
                    </Form.Group>
                     </Grid>
-                    <CustomButton btnType='Success'>Order</CustomButton>
+                    <CustomButton btnType='Success' clicked={this.orderHandler}>Order</CustomButton>
                 </Form>
             </div>
         )
