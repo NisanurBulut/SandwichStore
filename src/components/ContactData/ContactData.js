@@ -47,8 +47,8 @@ class ContactData extends Component {
                     <Form.Input size="small" type="email" label="Email" placeholder="Email" name="email" />
                     <Form.Input size="small" type="text" label="Address" placeholder="Address" name="address" />
                    </Form.Group>
+                    <CustomButton  btnType='Success' clicked={this.orderHandler}>Send Order</CustomButton>
                     </Grid>
-                    <CustomButton btnType='Success' clicked={this.orderHandler}>Order</CustomButton>
                 </Form>
             </div>
         )

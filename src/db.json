@@ -1,9 +1,26 @@
 {
-  "ingredients" : {
-    "meat" : 0,
-    "salad" : 0,
-    "cheese":0,
-    "bacon":0
+  "ingredients": {
+    "meat": 0,
+    "salad": 0,
+    "cheese": 0,
+    "bacon": 0
   },
-  "orders": []
+  "orders": [
+    {
+      "ingredients": {
+        "meat": 0,
+        "salad": 1,
+        "cheese": 0,
+        "bacon": 1
+      },
+      "price": "1.2",
+      "customer": {
+        "name": "Nisanur Bulut",
+        "address": "Eskişehir"
+      },
+      "email": "nisanur@gmail.com",
+      "deliveryMethod": "fastest",
+      "id": 1
+    }
+  ]
 }
