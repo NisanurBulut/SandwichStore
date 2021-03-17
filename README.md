@@ -9,7 +9,7 @@ If you like or are using this project to learn or start your solution, please gi
 - Prepared sandwich is to be ordered
 - The order summary is shown on the modal
 - The order can be canceled
-
+- The orders are listed.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
