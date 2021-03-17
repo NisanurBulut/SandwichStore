@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Layout>
         <Switch>
-        <Route path="checkout" component={Checkout}/>
+        <Route path="/checkout" component={Checkout}/>
         <Route path="/" exact component={SandwichBuilder}></Route>
         </Switch>
       </Layout>
