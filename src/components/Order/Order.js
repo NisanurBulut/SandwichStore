@@ -1,16 +1,14 @@
 import React from 'react';
-import { Card, List, Icon, ListItem } from 'semantic-ui-react';
+import { Card, List, ListItem } from 'semantic-ui-react';
 import classes from './Order.module.css';
 
 function Order(props) {
   const ingredients = [];
   for (let ingredientName in props.ingredients) {
-    if (props.ingredients[ingredientName] > 0) {
       ingredients.push({
         amount: props.ingredients[ingredientName],
         name: ingredientName,
       });
-    }
   }
   const ingredientOutput = ingredients.map((ig) => {
     return (
@@ -25,11 +23,11 @@ function Order(props) {
   });
   return (
     <div className={classes.Order}>
-      <Card>
+      <Card color="red">
         <Card.Content>
-          <Card.Header>Price: {Number.parseFloat(props.price)} ₺</Card.Header>
+          <Card.Header>Price: {Number.parseFloat(props.price).toFixed(2)} ₺</Card.Header>
           <Card.Meta></Card.Meta>
-          <Card.Description>
+          <Card.Description textAlign="center">
             <List divided relaxed>
               {ingredientOutput}
             </List>
