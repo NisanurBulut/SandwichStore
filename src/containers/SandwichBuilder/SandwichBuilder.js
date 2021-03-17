@@ -102,8 +102,19 @@ class SandwichBuilder extends Component {
     //     this.setState({ loading: false, purchasing: false });
     //     console.log(err);
     //   });
-
-    this.props.history.push('/checkout');
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          '=' +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString,
+    });
   };
   render() {
     const disabledInfo = {
@@ -143,12 +154,14 @@ class SandwichBuilder extends Component {
           </div>
         </Auxiliary>
       );
-      orderSummary = <OrderSummary
-        price={this.state.totalPrice}
-        ingredients={this.state.ingredients}
-        purchaseCancelled={this.purchaseCancelHandler}
-        purchaseContinued={this.purchaseContinueHandler}
-      />;
+      orderSummary = (
+        <OrderSummary
+          price={this.state.totalPrice}
+          ingredients={this.state.ingredients}
+          purchaseCancelled={this.purchaseCancelHandler}
+          purchaseContinued={this.purchaseContinueHandler}
+        />
+      );
     }
     if (this.state.loading) {
       orderSummary = <Spinner />;
