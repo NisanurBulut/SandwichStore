@@ -8,7 +8,7 @@ const NavigationItems = () => {
       <NavigationItem link="/" exact>
         Sandwich
       </NavigationItem>
-      <NavigationItem link="/orders">Orders</NavigationItem>
+      <NavigationItem link="/orders" exact>Orders</NavigationItem>
     </ul>
   );
 };

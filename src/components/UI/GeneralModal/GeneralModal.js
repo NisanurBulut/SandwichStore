@@ -11,7 +11,6 @@ class GeneralModal extends Component {
     );
   }
   componentWillUpdate() {
-    console.log('Modal is updating');
   }
   render() {
     return (

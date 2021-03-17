@@ -2,16 +2,18 @@ import './App.css';
 import Layout from './hoc/Layout/Layout';
 import SandwichBuilder from './containers/SandwichBuilder/SandwichBuilder';
 import React, { Component } from 'react';
-import Checkout from './containers/Checkout/Checkout';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 import Orders from './containers/Orders/Orders';
+import Checkout from './containers/Checkout/Checkout';
+
 class App extends Component {
   render() {
     return (
       <Layout>
         <Switch>
-        <Route path="/checkout" component={Checkout}/>
-        <Route path="/" exact component={SandwichBuilder}></Route>
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" component={Orders} />
+          <Route path="/" exact component={SandwichBuilder} />
         </Switch>
       </Layout>
     );
