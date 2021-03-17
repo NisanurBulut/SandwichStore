@@ -4,16 +4,21 @@ import Sandwich from '../../components/Sandwich/Sandwich';
 
 class Checkout extends Component {
   state = {
-    ingredients:null
+    ingredients:{
+      bacon:1,
+      cheese:1,
+      salad:1,
+      meat:1
+    }
   }
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredients = {};
     for (let param in query.entries()) {
-      // [salad,1]
       ingredients[param[0]] = +param[1];
     }
     this.setState({ ingredients: ingredients });
+    console.log(ingredients);
   }
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
@@ -24,7 +29,6 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        <Sandwich />
         <CheckoutSummary
           checkoutCancelled={this.checkoutCancelledHandler}
           checkoutContinued={this.checkoutContinuedHandler}
