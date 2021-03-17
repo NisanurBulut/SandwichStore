@@ -3,6 +3,7 @@ import Order from '../../components/Order/Order';
 import classes from './Orders.module.css';
 import axios from '../../services/general-service';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Orders extends Component {
   state = {
@@ -27,8 +28,10 @@ class Orders extends Component {
       });
   }
   render() {
-    return (
-      <div className={classes.Orders}>
+    if (this.state.loading) {
+      return <Spinner />;
+    } else {
+     return <div className={classes.Orders}>
         {this.state.orders.map((order) => (
           <Order
             key={order.id}
@@ -36,8 +39,8 @@ class Orders extends Component {
             price={order.price}
           />
         ))}
-      </div>
-    );
+      </div>;
+    }
   }
 }
 export default WithErrorHandler(Orders, axios);
