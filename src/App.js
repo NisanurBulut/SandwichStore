@@ -11,7 +11,6 @@ class App extends Component {
       <Layout>
         <Switch>
         <Route path="/checkout" component={Checkout}/>
-        <Route path="/orders" exact component={Orders}></Route>
         <Route path="/" exact component={SandwichBuilder}></Route>
         </Switch>
       </Layout>
