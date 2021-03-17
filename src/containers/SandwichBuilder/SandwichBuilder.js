@@ -5,6 +5,9 @@ import BuildControls from '../../components/BuildControls/BuildControls';
 import classes from './SandwichBuilder.module.css';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import axios from '../../services/general-service';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -15,16 +18,23 @@ const INGREDIENT_PRICES = {
 
 class SandwichBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
+    loading: false,
+    error: false,
   };
+  componentDidMount() {
+    axios
+      .get('ingredients')
+      .then((response) => {
+        this.setState({ ingredients: response.data, loading: false });
+      })
+      .catch((err) => {
+        this.setState({ loading: false, error: true });
+      });
+  }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
   };
@@ -71,7 +81,20 @@ class SandwichBuilder extends Component {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    alert('Hello Nisanur');
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          '=' +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    queryParams.push('price='+this.state.totalPrice);
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString,
+    });
   };
   render() {
     const disabledInfo = {
@@ -80,39 +103,60 @@ class SandwichBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
+    let orderSummaryElement = null;
+    let sandwichElement = this.state.error ? (
+      <p>Ingredients doesnt load</p>
+    ) : (
+      <Spinner />
+    );
+
+    if (this.state.ingredients) {
+      sandwichElement = (
+        <Auxiliary>
+          <div className={classes.row}>
+            <div className={classes.column}>
+              <Sandwich
+                className={classes.column}
+                ingredients={this.state.ingredients}
+              />
+            </div>
+            <div className={classes.column}>
+              <BuildControls
+                className={classes.column}
+                ingredientAdded={this.addIngredientHandler}
+                ingredientRemoved={this.removeIngredientHandler}
+                disabled={disabledInfo}
+                price={this.state.totalPrice}
+                purchasable={this.state.purchasable}
+                ordered={this.purchaseHandler}
+              />
+            </div>
+          </div>
+        </Auxiliary>
+      );
+      orderSummaryElement = (
+        <OrderSummary
+          price={this.state.totalPrice}
+          ingredients={this.state.ingredients}
+          purchaseCancelled={this.purchaseCancelHandler}
+          purchaseContinued={this.purchaseContinueHandler}
+        />
+      );
+    }
+    if (this.state.loading) {
+      orderSummaryElement = <Spinner />;
+    }
     return (
       <Auxiliary>
         <GeneralModal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary
-          price={this.state.totalPrice}
-          ingredients={this.state.ingredients}
-          purchaseCancelled={this.purchaseCancelHandler}
-          purchaseContinued={this.purchaseContinueHandler} />
+          {orderSummaryElement}
         </GeneralModal>
-        <div className={classes.row}>
-          <div className={classes.column}>
-            <Sandwich
-              className={classes.column}
-              ingredients={this.state.ingredients}
-            />
-          </div>
-          <div className={classes.column}>
-            <BuildControls
-              className={classes.column}
-              ingredientAdded={this.addIngredientHandler}
-              ingredientRemoved={this.removeIngredientHandler}
-              disabled={disabledInfo}
-              price={this.state.totalPrice}
-              purchasable={this.state.purchasable}
-              ordered={this.purchaseHandler}
-            />
-          </div>
-        </div>
+        {sandwichElement}
       </Auxiliary>
     );
   }
 }
-export default SandwichBuilder;
+export default WithErrorHandler(SandwichBuilder, axios);
