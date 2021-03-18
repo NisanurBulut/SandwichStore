@@ -13,10 +13,10 @@ import * as sandwichBuilderActionTypes from '../../store/actions/index';
 
 class SandwichBuilder extends Component {
   state = {
-    purchasing: false
+    purchasing: false,
   };
   componentDidMount() {
-
+    this.props.onInitIngredients();
   }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -84,9 +84,7 @@ class SandwichBuilder extends Component {
         />
       );
     }
-    if (this.state.loading) {
-      orderSummaryElement = <Spinner />;
-    }
+
     return (
       <Auxiliary>
         <GeneralModal
@@ -105,6 +103,7 @@ const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
     price: state.totalPrice,
+    error: state.error,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -113,6 +112,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(sandwichBuilderActionTypes.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
       dispatch(sandwichBuilderActionTypes.removeIngredient(ingName)),
+    onInitIngredients: () =>
+      dispatch(sandwichBuilderActionTypes.initIngredients()),
   };
 };
 

@@ -1,2 +1,6 @@
-export {addIngredient,removeIngredient} from './sandwichBuilder'
-export {} from './order'
+export {
+  addIngredient,
+  removeIngredient,
+  initIngredients,
+} from './sandwichBuilder';
+export {} from './order';

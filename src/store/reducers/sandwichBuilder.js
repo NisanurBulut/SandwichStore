@@ -10,7 +10,7 @@ const INGREDIENT_PRICES = {
 const initialState = {
   ingredients: null,
   totalPrice: 0,
-  error:false
+  error: false,
 };
 
 const sandwichBuilderReducer = (state = initialState, action) => {
@@ -33,6 +33,19 @@ const sandwichBuilderReducer = (state = initialState, action) => {
         },
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
+    case actionTypes.SET_INGREDIENTS: {
+      return {
+        ...state,
+        ingredients: action.ingredients,
+        error: false,
+      };
+    }
+    case actionTypes.FETCH_INGREDIENTS_FAILED: {
+      return {
+        ...state,
+        error: true,
+      };
+    }
     default:
       return state;
   }
