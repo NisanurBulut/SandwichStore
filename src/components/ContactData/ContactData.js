@@ -15,7 +15,6 @@ class ContactData extends Component {
       email: '',
       address: '',
     },
-    loading: false,
   };
   orderHandler = (event) => {
     event.preventDefault();
@@ -68,7 +67,7 @@ class ContactData extends Component {
         </Grid>
       </Form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       formElement = <Spinner />;
     }
     return (
@@ -89,13 +88,14 @@ const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
     price: state.totalPrice,
+    loading: state.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onOrderSandwich: (orderData) =>
-      dispatch(actionTypes.purchaseSandwichStart(orderData)),
+      dispatch(actionTypes.purchaseSandwich(orderData)),
   };
 };
 export default connect(

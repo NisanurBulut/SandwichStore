@@ -7,6 +7,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.PURCHASE_SANDWICH_START:
+      return {
+        ...state,
+        loading: true,
+      };
     case actionTypes.PURCHASE_SANDWICH_SUCCESS:
       const newData = {
         ...action.orderData,
@@ -19,8 +24,8 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.PURCHASE_SANDWICH_FAIL:
       return {
-          ...state,
-          loading:false,
+        ...state,
+        loading: false,
       };
     default:
       return state;

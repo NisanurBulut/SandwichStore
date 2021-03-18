@@ -16,8 +16,17 @@ export const purchaseSandwichFail = (error) => {
   };
 };
 
-export const purchaseSandwichStart = (orderData) => {
+export const purchaseSandwichStart = () => {
+  return  {
+    type:actionTypes.PURCHASE_SANDWICH_START,
+
+  };
+};
+
+
+export const purchaseSandwich = (orderData) => {
   return (dispatch) => {
+   dispatch(purchaseSandwichStart());
     axios
       .post('orders', orderData)
       .then((response) => {
