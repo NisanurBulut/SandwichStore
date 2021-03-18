@@ -101,9 +101,9 @@ class SandwichBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    error: state.error,
+    ings: state.sandwichBuilder.ingredients,
+    price: state.sandwichBuilder.totalPrice,
+    error: state.sandwichBuilder.error,
   };
 };
 const mapDispatchToProps = (dispatch) => {
