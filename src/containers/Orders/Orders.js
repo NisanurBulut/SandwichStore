@@ -4,12 +4,13 @@ import classes from './Orders.module.css';
 import axios from '../../services/general-service';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { Grid, Card, Transition } from 'semantic-ui-react';
+import { Grid, Pagination, Transition } from 'semantic-ui-react';
 
 class Orders extends Component {
   state = {
     orders: [],
     loading: true,
+    activePage: 1
   };
   componentWillMount() {
     console.log('ORders');

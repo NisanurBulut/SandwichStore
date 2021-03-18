@@ -5,6 +5,8 @@ import classes from './ContactData.module.css';
 import { Form, Grid } from 'semantic-ui-react';
 import axios from '../../services/general-service';
 import Spinner from '../UI/Spinner/Spinner';
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
+import * as actionTypes from '../../store/actions/index';
 
 class ContactData extends Component {
   state = {
@@ -17,8 +19,7 @@ class ContactData extends Component {
   };
   orderHandler = (event) => {
     event.preventDefault();
-    console.log(event.target.elements.name.value);
-    this.setState({ loading: true });
+
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
@@ -29,16 +30,8 @@ class ContactData extends Component {
       },
       deliveryMethod: 'fastest',
     };
-    axios
-      .post('orders', order)
-      .then((response) => {
-        this.setState({ loading: false });
-        this.props.history.push('/');
-      })
-      .catch((err) => {
-        this.setState({ loading: false });
-        console.log(err);
-      });
+
+    this.props.onOrderSandwich(order);
   };
   render() {
     let formElement = (
@@ -71,9 +64,7 @@ class ContactData extends Component {
               required
             />
           </Form.Group>
-          <CustomButton btnType="Success">
-            Send Order
-          </CustomButton>
+          <CustomButton btnType="Success">Send Order</CustomButton>
         </Grid>
       </Form>
     );
@@ -100,4 +91,14 @@ const mapStateToProps = (state) => {
     price: state.totalPrice,
   };
 };
-export default connect(mapStateToProps)(ContactData);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOrderSandwich: (orderData) =>
+      dispatch(actionTypes.purchaseSandwichStart(orderData)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithErrorHandler(ContactData, axios));
