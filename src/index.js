@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import 'semantic-ui-css/semantic.min.css';
 import sandwichBuilderReducer from './store/reducers/sandwichBuilder';
 
-const store = createStore(sandwichBuilderReducer);
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSIONS_COMPOSE__ || compose;
+const store = createStore(
+  sandwichBuilderReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 const app = (
   <BrowserRouter>
     <App />
