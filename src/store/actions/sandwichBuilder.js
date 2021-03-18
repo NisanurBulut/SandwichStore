@@ -2,10 +2,10 @@ import * as actionTypes from './actionTypes';
 import axios from '../../services/general-service';
 
 export const addIngredient = (name) => {
-  debugger;
+  console.log(name);
   return {
     type: actionTypes.ADD_INGREDIENT,
-    ingredintName: name,
+    ingredientName: name,
   };
 };
 
@@ -13,7 +13,7 @@ export const removeIngredient = (name) => {
   debugger;
   return {
     type: actionTypes.REMOVE_INGREDIENT,
-    ingredintName: name,
+    ingredientName: name,
   };
 };
 
