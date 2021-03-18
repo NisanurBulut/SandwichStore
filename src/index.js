@@ -7,9 +7,9 @@ import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import 'semantic-ui-css/semantic.min.css';
-import reducer from './store/reducer';
+import sandwichBuilderReducer from './store/reducers/sandwichBuilder';
 
-const store = createStore(reducer);
+const store = createStore(sandwichBuilderReducer);
 const app = (
   <BrowserRouter>
     <App />

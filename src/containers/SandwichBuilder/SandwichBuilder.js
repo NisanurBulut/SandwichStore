@@ -9,8 +9,7 @@ import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
-
+import * as sandwichBuilderActionTypes from '../../store/actions/index';
 
 class SandwichBuilder extends Component {
   state = {
@@ -40,13 +39,13 @@ class SandwichBuilder extends Component {
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
-   return sum > 0;
+    return sum > 0;
   }
   purchaseCancelHandler = () => {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    this.props.history.push( '/checkout');
+    this.props.history.push('/checkout');
   };
   render() {
     const disabledInfo = {
@@ -115,18 +114,15 @@ class SandwichBuilder extends Component {
 const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingName) =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
+      dispatch(sandwichBuilderActionTypes.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
-      dispatch({
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingName,
-      }),
+      dispatch(sandwichBuilderActionTypes.removeIngredient(ingName)),
   };
 };
 
