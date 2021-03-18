@@ -19,6 +19,7 @@ If you like or are using this project to learn or start your solution, please gi
 - npm install --save axios
 - npm install --save react-router-dom
 - npm install semantic-ui-react semantic-ui-css
+- npm install --save redux react-redux
 
 ### HelpFull Websites
 [cheeseburger-css-div](https://github.com/lesscake/cheeseburger-css-div) [Single component css](https://projects.lukehaas.me/css-loaders/)

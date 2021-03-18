@@ -1,16 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
-const app = <BrowserRouter><App /></BrowserRouter>
+import reducer from './store/reducer';
+
+const store = createStore(reducer);
+const app = (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    {app}
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>{app}</React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

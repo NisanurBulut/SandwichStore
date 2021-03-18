@@ -18,6 +18,7 @@ class Orders extends Component {
     axios
       .get('orders')
       .then((response) => {
+        console.log(response);
         const fetchedOrders = [];
         for (let key in response.data) {
           fetchedOrders.push({ id: key, ...response.data[key] });
@@ -42,6 +43,7 @@ class Orders extends Component {
             key={order.id}
             ingredients={order.ingredients}
             price={order.price}
+            customer={order.customer}
           />
         </Grid.Column>
         ))}

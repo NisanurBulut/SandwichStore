@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CustomButton from '../UI/Button/CustomButton';
 import classes from './ContactData.module.css';
 import { Form, Grid } from 'semantic-ui-react';
@@ -16,15 +17,16 @@ class ContactData extends Component {
   };
   orderHandler = (event) => {
     event.preventDefault();
+    console.log(event.target.elements.name.value);
     this.setState({ loading: true });
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       customer: {
-        name: 'Nisanur Bulut',
-        address: 'Eskişehir',
+        name: event.target.elements.name.value,
+        address: event.target.elements.address.value,
+        email: event.target.elements.email.value,
       },
-      email: 'nisanur@gmail.com',
       deliveryMethod: 'fastest',
     };
     axios
@@ -40,7 +42,7 @@ class ContactData extends Component {
   };
   render() {
     let formElement = (
-      <Form>
+      <Form onSubmit={this.orderHandler}>
         <Grid>
           <Form.Group inline widths="equal">
             <Form.Input
@@ -66,7 +68,7 @@ class ContactData extends Component {
               name="address"
             />
           </Form.Group>
-          <CustomButton btnType="Success" clicked={this.orderHandler}>
+          <CustomButton btnType="Success">
             Send Order
           </CustomButton>
         </Grid>
@@ -89,4 +91,10 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+export default connect(mapStateToProps)(ContactData);
