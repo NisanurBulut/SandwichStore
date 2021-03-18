@@ -52,6 +52,7 @@ class ContactData extends Component {
               label="Name"
               placeholder="Name"
               name="name"
+              required
             />
             <Form.Input
               size="small"
@@ -59,6 +60,7 @@ class ContactData extends Component {
               label="Email"
               placeholder="Email"
               name="email"
+              required
             />
             <Form.Input
               size="small"
@@ -66,6 +68,7 @@ class ContactData extends Component {
               label="Address"
               placeholder="Address"
               name="address"
+              required
             />
           </Form.Group>
           <CustomButton btnType="Success">
