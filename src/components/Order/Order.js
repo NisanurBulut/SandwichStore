@@ -3,7 +3,9 @@ import { Card, List, ListItem } from 'semantic-ui-react';
 import classes from './Order.module.css';
 
 function Order(props) {
+
   const ingredients = [];
+
   for (let ingredientName in props.ingredients) {
       ingredients.push({
         amount: props.ingredients[ingredientName],
@@ -26,7 +28,7 @@ function Order(props) {
       <Card color="red">
         <Card.Content>
           <Card.Header>Price: {Number.parseFloat(props.price).toFixed(2)} ₺</Card.Header>
-          <Card.Meta></Card.Meta>
+          <Card.Meta>{props.customer.name}/{props.customer.address}/{props.customer.email}</Card.Meta>
           <Card.Description textAlign="center">
             <List divided relaxed>
               {ingredientOutput}

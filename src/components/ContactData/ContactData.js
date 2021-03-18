@@ -25,8 +25,8 @@ class ContactData extends Component {
       customer: {
         name: event.target.elements.name.value,
         address: event.target.elements.address.value,
+        email: event.target.elements.email.value,
       },
-      email: event.target.elements.email.value,
       deliveryMethod: 'fastest',
     };
     axios
