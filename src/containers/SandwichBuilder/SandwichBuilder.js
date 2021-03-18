@@ -8,6 +8,8 @@ import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -18,7 +20,6 @@ const INGREDIENT_PRICES = {
 
 class SandwichBuilder extends Component {
   state = {
-    ingredients: null,
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
@@ -89,7 +90,7 @@ class SandwichBuilder extends Component {
           encodeURIComponent(this.state.ingredients[i])
       );
     }
-    queryParams.push('price='+this.state.totalPrice);
+    queryParams.push('price=' + this.state.totalPrice);
     const queryString = queryParams.join('&');
     this.props.history.push({
       pathname: '/checkout',
@@ -98,7 +99,7 @@ class SandwichBuilder extends Component {
   };
   render() {
     const disabledInfo = {
-      ...this.state.ingredients,
+      ...this.props.ings,
     };
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
@@ -110,21 +111,21 @@ class SandwichBuilder extends Component {
       <Spinner />
     );
 
-    if (this.state.ingredients) {
+    if (this.props.ings) {
       sandwichElement = (
         <Auxiliary>
           <div className={classes.row}>
             <div className={classes.column}>
               <Sandwich
                 className={classes.column}
-                ingredients={this.state.ingredients}
+                ingredients={this.props.ings}
               />
             </div>
             <div className={classes.column}>
               <BuildControls
                 className={classes.column}
-                ingredientAdded={this.addIngredientHandler}
-                ingredientRemoved={this.removeIngredientHandler}
+                ingredientAdded={this.props.onIngredientAdded}
+                ingredientRemoved={this.props.onIngredientRemoved}
                 disabled={disabledInfo}
                 price={this.state.totalPrice}
                 purchasable={this.state.purchasable}
@@ -137,7 +138,7 @@ class SandwichBuilder extends Component {
       orderSummaryElement = (
         <OrderSummary
           price={this.state.totalPrice}
-          ingredients={this.state.ingredients}
+          ingredients={this.props.ings}
           purchaseCancelled={this.purchaseCancelHandler}
           purchaseContinued={this.purchaseContinueHandler}
         />
@@ -159,4 +160,25 @@ class SandwichBuilder extends Component {
     );
   }
 }
-export default WithErrorHandler(SandwichBuilder, axios);
+
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIngredientAdded: (ingName) =>
+      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
+    onIngredientRemoved: (ingName) =>
+      dispatch({
+        type: actionTypes.REMOVE_INGREDIENT,
+        ingredientName: ingName,
+      }),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithErrorHandler(SandwichBuilder, axios));
