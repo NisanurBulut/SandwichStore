@@ -34,7 +34,7 @@ class ContactData extends Component {
   };
   render() {
     let formElement = (
-      <Form onSubmit={this.orderHandler}>
+      <Form onSubmit={this.orderHandler} className={classes.form}>
         <Grid>
           <Form.Group inline widths="equal">
             <Form.Input
@@ -72,11 +72,8 @@ class ContactData extends Component {
     }
     return (
       <div className={classes.ContactData}>
-        <br />
         <h1>
-          <center>
-            <i>Contact Information</i>
-          </center>
+        <i>Contact Information</i>
         </h1>
         {formElement}
       </div>
