@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GeneralModal from '../../components/UI/GeneralModal/GeneralModal';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
@@ -8,25 +9,14 @@ import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-import { connect } from 'react-redux';
 import * as sandwichBuilderActionTypes from '../../store/actions/index';
 
 class SandwichBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: false,
+    purchasing: false
   };
   componentDidMount() {
-    console.log(this.props);
-    // axios
-    //   .get('ingredients')
-    //   .then((response) => {
-    //     this.setState({ ingredients: response.data, loading: false });
-    //   })
-    //   .catch((err) => {
-    //     this.setState({ loading: false, error: true });
-    //   });
+
   }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -55,7 +45,7 @@ class SandwichBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
     let orderSummaryElement = null;
-    let sandwichElement = this.state.error ? (
+    let sandwichElement = this.props.error ? (
       <p>Ingredients doesnt load</p>
     ) : (
       <Spinner />

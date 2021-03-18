@@ -8,13 +8,9 @@ const INGREDIENT_PRICES = {
 };
 
 const initialState = {
-  ingredients: {
-    salad: 0,
-    meat: 0,
-    bacon: 0,
-    cheese: 0,
-  },
+  ingredients: null,
   totalPrice: 0,
+  error:false
 };
 
 const sandwichBuilderReducer = (state = initialState, action) => {
