@@ -24,6 +24,7 @@ If you like or are using this project to learn or start your solution, please gi
 - npm install --save redux react-redux
 - npm install --save redux-thunk
 - npm install redux-devtools
+- npm i axios-delay
 
 ### HelpFull Websites
 [cheeseburger-css-div](https://github.com/lesscake/cheeseburger-css-div) [Single component css](https://projects.lukehaas.me/css-loaders/)

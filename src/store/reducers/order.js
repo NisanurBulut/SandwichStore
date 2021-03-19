@@ -17,11 +17,11 @@ const purchaseSandwichSuccess = (state, action) => {
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_SANDWICH_START:
-      return updateObject(state, { loading: true });
+      return updateObject(state, { loading: true, purchased:false });
     case actionTypes.PURCHASE_SANDWICH_SUCCESS:
       return purchaseSandwichSuccess(state, action);
     case actionTypes.PURCHASE_SANDWICH_FAIL:
-      return updateObject(state, { loading: false });
+      return updateObject(state, { loading: false, purchased:false });
     case actionTypes.FETCH_ORDERS_START:
       return updateObject(state, { loading: true });
     case actionTypes.FETCH_ORDERS_SUCCESS:

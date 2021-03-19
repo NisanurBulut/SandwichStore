@@ -27,7 +27,9 @@ export const purchaseSandwich = (orderData) => {
   return (dispatch) => {
     dispatch(purchaseSandwichStart());
     axios
-      .post('orders', orderData)
+      .post('orders', orderData, {
+        delay: 1000,
+      })
       .then((response) => {
         dispatch(purchaseSandwichSuccess(response.data));
       })
@@ -36,7 +38,6 @@ export const purchaseSandwich = (orderData) => {
       });
   };
 };
-
 
 export const fetchOrdersStart = () => {
   return {
@@ -62,9 +63,10 @@ export const fetchOrders = () => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
     axios
-      .get('orders')
+      .get('orders', {
+        delay: 1000,
+      })
       .then((response) => {
-        console.log(response);
         const fetchedOrders = [];
         for (let key in response.data) {
           fetchedOrders.push({ id: key, ...response.data[key] });
