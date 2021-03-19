@@ -3,4 +3,4 @@ export {
   removeIngredient,
   initIngredients,
 } from './sandwichBuilder';
-export { purchaseSandwich, purchaseInit } from './order';
+export { purchaseSandwich, fetchOrders } from './order';
