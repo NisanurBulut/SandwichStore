@@ -16,7 +16,7 @@ class Checkout extends Component {
     let summaryElement = <Redirect to="/" />;
     if (this.props.ings) {
       summaryElement = (
-        <React.Fragment>
+        <>
           <CheckoutSummary
             checkoutCancelled={this.checkoutCancelledHandler}
             checkoutContinued={this.checkoutContinuedHandler}
@@ -26,7 +26,7 @@ class Checkout extends Component {
             path={this.props.match.path + '/contact-data'}
             component={ContactData}
           />
-        </React.Fragment>
+        </>
       );
     }
     return <div>{summaryElement}</div>;
