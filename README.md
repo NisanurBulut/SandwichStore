@@ -10,7 +10,7 @@ If you like or are using this project to learn or start your solution, please gi
 - The order summary is shown on the modal
 - The order can be canceled
 - The orders are listed.
-- Using the Redux pattern, the process of adding and deleting food ingredients is defined.
+- Using the Redux pattern is done.
 - Sandwich price is calculated using Redux pattern.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
