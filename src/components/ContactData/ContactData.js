@@ -7,6 +7,7 @@ import axios from '../../services/general-service';
 import Spinner from '../UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import * as actionTypes from '../../store/actions/index';
+import { Redirect } from 'react-router';
 
 class ContactData extends Component {
   state = {
@@ -67,13 +68,17 @@ class ContactData extends Component {
         </Grid>
       </Form>
     );
+
     if (this.props.loading) {
       formElement = <Spinner />;
+    }
+    if (this.props.purchased) {
+      formElement = <Redirect to="/" />;
     }
     return (
       <div className={classes.ContactData}>
         <h1>
-        <i>Contact Information</i>
+          <i>Contact Information</i>
         </h1>
         {formElement}
       </div>
@@ -86,6 +91,7 @@ const mapStateToProps = (state) => {
     ings: state.sandwichBuilder.ingredients,
     price: state.sandwichBuilder.totalPrice,
     loading: state.order.loading,
+    purchased: state.order.purchased,
   };
 };
 

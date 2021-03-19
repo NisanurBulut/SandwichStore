@@ -1,11 +1,12 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../services/general-service';
 
-export const purchaseSandwichSuccess = (id, orderData) => {
+export const purchaseSandwichSuccess = (orderData) => {
   return {
     type: actionTypes.PURCHASE_SANDWICH_SUCCESS,
-    orderId: id,
+    orderId: orderData.id,
     orderData: orderData,
+    loading: false
   };
 };
 
@@ -17,24 +18,27 @@ export const purchaseSandwichFail = (error) => {
 };
 
 export const purchaseSandwichStart = () => {
-  return  {
-    type:actionTypes.PURCHASE_SANDWICH_START,
-
+  return {
+    type: actionTypes.PURCHASE_SANDWICH_START,
   };
 };
 
-
 export const purchaseSandwich = (orderData) => {
   return (dispatch) => {
-   dispatch(purchaseSandwichStart());
+    dispatch(purchaseSandwichStart());
     axios
       .post('orders', orderData)
       .then((response) => {
-        console.log(response.data);
-        purchaseSandwichSuccess(response.data);
+        dispatch(purchaseSandwichSuccess(response.data));
       })
       .catch((err) => {
-        purchaseSandwichFail(err);
+        dispatch(purchaseSandwichFail(err));
       });
+  };
+};
+
+export const purchaseInit = () => {
+  return {
+    type: actionTypes.PURCHASE_INIT,
   };
 };

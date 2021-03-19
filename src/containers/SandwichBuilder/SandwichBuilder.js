@@ -9,7 +9,7 @@ import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-import * as sandwichBuilderActionTypes from '../../store/actions/index';
+import * as actionTypes from '../../store/actions/index';
 import imagePath from '../../assests/images/san2_.png';
 class SandwichBuilder extends Component {
   state = {
@@ -106,17 +106,18 @@ const mapStateToProps = (state) => {
   return {
     ings: state.sandwichBuilder.ingredients,
     price: state.sandwichBuilder.totalPrice,
-    error: state.sandwichBuilder.error,
+    error: state.sandwichBuilder.error
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingName) =>
-      dispatch(sandwichBuilderActionTypes.addIngredient(ingName)),
+      dispatch(actionTypes.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
-      dispatch(sandwichBuilderActionTypes.removeIngredient(ingName)),
+      dispatch(actionTypes.removeIngredient(ingName)),
     onInitIngredients: () =>
-      dispatch(sandwichBuilderActionTypes.initIngredients()),
+      dispatch(actionTypes.initIngredients()),
+    onInitPurchase: () => dispatch(actionTypes.purchaseInit()),
   };
 };
 

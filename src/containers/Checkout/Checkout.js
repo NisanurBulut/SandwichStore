@@ -5,6 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Checkout extends Component {
+
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
   };
@@ -12,28 +13,28 @@ class Checkout extends Component {
     this.props.history.replace('/checkout/contact-data');
   };
   render() {
-    let summaryElement = <Redirect to="/" />
-    if(this.props.ings){
-      summaryElement =(<><CheckoutSummary
-        checkoutCancelled={this.checkoutCancelledHandler}
-        checkoutContinued={this.checkoutContinuedHandler}
-        ingredients={this.props.ings}
-      />
-      <Route
-      path={this.props.match.path + '/contact-data'}
-      component={ContactData}
-    /></>)
+    let summaryElement = <Redirect to="/" />;
+    if (this.props.ings) {
+      summaryElement = (
+        <React.Fragment>
+          <CheckoutSummary
+            checkoutCancelled={this.checkoutCancelledHandler}
+            checkoutContinued={this.checkoutContinuedHandler}
+            ingredients={this.props.ings}
+          />
+          <Route
+            path={this.props.match.path + '/contact-data'}
+            component={ContactData}
+          />
+        </React.Fragment>
+      );
     }
-    return (
-      <div>
-        {summaryElement}
-      </div>
-    );
+    return <div>{summaryElement}</div>;
   }
 }
 const mapStateToProps = (state) => {
   return {
-    ings: state.sandwichBuilder.ingredients,
+    ings: state.sandwichBuilder.ingredients
   };
 };
 export default connect(mapStateToProps)(Checkout);

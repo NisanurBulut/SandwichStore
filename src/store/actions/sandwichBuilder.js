@@ -2,7 +2,6 @@ import * as actionTypes from './actionTypes';
 import axios from '../../services/general-service';
 
 export const addIngredient = (name) => {
-  console.log(name);
   return {
     type: actionTypes.ADD_INGREDIENT,
     ingredientName: name,
@@ -10,7 +9,6 @@ export const addIngredient = (name) => {
 };
 
 export const removeIngredient = (name) => {
-  debugger;
   return {
     type: actionTypes.REMOVE_INGREDIENT,
     ingredientName: name,

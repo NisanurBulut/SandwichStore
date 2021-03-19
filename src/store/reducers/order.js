@@ -3,10 +3,17 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   orders: [],
   loading: false,
+  purchased: false,
 };
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.PURCHASE_INIT: {
+      return {
+        ...state,
+        purchased: false,
+      };
+    }
     case actionTypes.PURCHASE_SANDWICH_START:
       return {
         ...state,
@@ -20,9 +27,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        purchased: true,
         orders: state.orders.concat(newData),
       };
     case actionTypes.PURCHASE_SANDWICH_FAIL:
+      debugger;
       return {
         ...state,
         loading: false,
@@ -31,6 +40,5 @@ const orderReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export default orderReducer;
