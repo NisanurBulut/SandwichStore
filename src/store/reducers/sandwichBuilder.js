@@ -16,7 +16,7 @@ const initialState = {
 const sandwichBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
-      const res={
+      const res = {
         ...state,
         ingredients: {
           ...state.ingredients,
@@ -24,7 +24,7 @@ const sandwichBuilderReducer = (state = initialState, action) => {
         },
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
       };
-      return res
+      return res;
     case actionTypes.REMOVE_INGREDIENT:
       return {
         ...state,
@@ -38,11 +38,12 @@ const sandwichBuilderReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: {
-          salad:action.ingredients.salad,
-          bacon:action.ingredients.bacon,
-          cheese:action.ingredients.cheese,
-          meat:action.ingredients.meat
+          salad: action.ingredients.salad,
+          bacon: action.ingredients.bacon,
+          cheese: action.ingredients.cheese,
+          meat: action.ingredients.meat,
         },
+        totalPrice: 0,
         error: false,
       };
     }
