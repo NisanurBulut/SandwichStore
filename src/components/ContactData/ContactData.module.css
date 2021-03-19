@@ -1,6 +1,17 @@
-.ContactData{
-border: 1px solid #eee;
-box-shadow: 1px 2px 3px #ccc;
-box-sizing: border-box;
-padding: 10px;
+.ContactData {
+  border: 2px solid #eee;
+  box-shadow: 4px 4px 4px #ccc;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  margin: 25px;
+  border-radius: 5px;
+}
+h1 {
+  margin: 35px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
 }

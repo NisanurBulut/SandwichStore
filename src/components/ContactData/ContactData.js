@@ -5,6 +5,9 @@ import classes from './ContactData.module.css';
 import { Form, Grid } from 'semantic-ui-react';
 import axios from '../../services/general-service';
 import Spinner from '../UI/Spinner/Spinner';
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
+import * as actionTypes from '../../store/actions/index';
+import { Redirect } from 'react-router';
 
 class ContactData extends Component {
   state = {
@@ -13,12 +16,10 @@ class ContactData extends Component {
       email: '',
       address: '',
     },
-    loading: false,
   };
   orderHandler = (event) => {
     event.preventDefault();
-    console.log(event.target.elements.name.value);
-    this.setState({ loading: true });
+
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
@@ -29,20 +30,12 @@ class ContactData extends Component {
       },
       deliveryMethod: 'fastest',
     };
-    axios
-      .post('orders', order)
-      .then((response) => {
-        this.setState({ loading: false });
-        this.props.history.push('/');
-      })
-      .catch((err) => {
-        this.setState({ loading: false });
-        console.log(err);
-      });
+
+    this.props.onOrderSandwich(order);
   };
   render() {
     let formElement = (
-      <Form onSubmit={this.orderHandler}>
+      <Form onSubmit={this.orderHandler} className={classes.form}>
         <Grid>
           <Form.Group inline widths="equal">
             <Form.Input
@@ -71,22 +64,22 @@ class ContactData extends Component {
               required
             />
           </Form.Group>
-          <CustomButton btnType="Success">
-            Send Order
-          </CustomButton>
+          <CustomButton btnType="Success">Send Order</CustomButton>
         </Grid>
       </Form>
     );
-    if (this.state.loading) {
+
+    if (this.props.loading) {
       formElement = <Spinner />;
+    }
+    if (this.props.purchased) {
+      this.props.onSetOrderSandwinchFinish();
+      formElement = <Redirect to="/" />;
     }
     return (
       <div className={classes.ContactData}>
-        <br />
         <h1>
-          <center>
-            <i>Contact Information</i>
-          </center>
+          <i>Contact Information</i>
         </h1>
         {formElement}
       </div>
@@ -96,8 +89,23 @@ class ContactData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
+    ings: state.sandwichBuilder.ingredients,
+    price: state.sandwichBuilder.totalPrice,
+    loading: state.order.loading,
+    purchased: state.order.purchased,
   };
 };
-export default connect(mapStateToProps)(ContactData);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOrderSandwich: (orderData) =>
+      dispatch(actionTypes.purchaseSandwich(orderData)),
+      onSetOrderSandwinchFinish: () => {
+      dispatch(actionTypes.setOrderFinish());
+    },
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithErrorHandler(ContactData, axios));

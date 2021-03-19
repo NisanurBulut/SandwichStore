@@ -4,9 +4,7 @@ import CustomButton from '../UI/Button/CustomButton';
 import classes from './OrderSummary.module.css';
 
 class OrderSummary extends Component {
-  componentWillUpdate(){
-    console.log('Order summary will upda');
-  }
+
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients).map((igKey) => {
       return (

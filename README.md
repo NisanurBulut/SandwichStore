@@ -10,7 +10,7 @@ If you like or are using this project to learn or start your solution, please gi
 - The order summary is shown on the modal
 - The order can be canceled
 - The orders are listed.
-- Using the Redux pattern, the process of adding and deleting food ingredients is defined.
+- Using the Redux pattern is done.
 - Sandwich price is calculated using Redux pattern.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
@@ -22,6 +22,9 @@ If you like or are using this project to learn or start your solution, please gi
 - npm install --save react-router-dom
 - npm install semantic-ui-react semantic-ui-css
 - npm install --save redux react-redux
+- npm install --save redux-thunk
+- npm install redux-devtools
+- npm i axios-delay
 
 ### HelpFull Websites
 [cheeseburger-css-div](https://github.com/lesscake/cheeseburger-css-div) [Single component css](https://projects.lukehaas.me/css-loaders/)

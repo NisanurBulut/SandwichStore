@@ -8,3 +8,8 @@
   width: 50%;
   padding: 10px;
 }
+
+img {
+  margin-top: 10%;
+  max-height: 300px;
+}

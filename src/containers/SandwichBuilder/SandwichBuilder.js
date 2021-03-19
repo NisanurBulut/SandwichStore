@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GeneralModal from '../../components/UI/GeneralModal/GeneralModal';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/BuildControls/BuildControls';
@@ -8,26 +9,14 @@ import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
-
-
+import * as actionTypes from '../../store/actions/index';
+import imagePath from '../../assests/images/san2_.png';
 class SandwichBuilder extends Component {
   state = {
     purchasing: false,
-    loading: false,
-    error: false,
   };
   componentDidMount() {
-    console.log(this.props);
-    // axios
-    //   .get('ingredients')
-    //   .then((response) => {
-    //     this.setState({ ingredients: response.data, loading: false });
-    //   })
-    //   .catch((err) => {
-    //     this.setState({ loading: false, error: true });
-    //   });
+    this.props.onInitIngredients();
   }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -40,13 +29,13 @@ class SandwichBuilder extends Component {
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
-   return sum > 0;
+    return sum > 0;
   }
   purchaseCancelHandler = () => {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    this.props.history.push( '/checkout');
+    this.props.history.push('/checkout');
   };
   render() {
     const disabledInfo = {
@@ -56,7 +45,7 @@ class SandwichBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
     let orderSummaryElement = null;
-    let sandwichElement = this.state.error ? (
+    let sandwichElement = this.props.error ? (
       <p>Ingredients doesnt load</p>
     ) : (
       <Spinner />
@@ -84,6 +73,9 @@ class SandwichBuilder extends Component {
               />
             </div>
           </div>
+          <div className={classes.row}>
+            <img src={imagePath} className={classes.sandwichBuilder} />
+          </div>
         </Auxiliary>
       );
       orderSummaryElement = (
@@ -95,9 +87,7 @@ class SandwichBuilder extends Component {
         />
       );
     }
-    if (this.state.loading) {
-      orderSummaryElement = <Spinner />;
-    }
+
     return (
       <Auxiliary>
         <GeneralModal
@@ -114,19 +104,19 @@ class SandwichBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice
+    ings: state.sandwichBuilder.ingredients,
+    price: state.sandwichBuilder.totalPrice,
+    error: state.sandwichBuilder.error
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingName) =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
+      dispatch(actionTypes.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
-      dispatch({
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingName,
-      }),
+      dispatch(actionTypes.removeIngredient(ingName)),
+    onInitIngredients: () =>
+      dispatch(actionTypes.initIngredients())
   };
 };
 
