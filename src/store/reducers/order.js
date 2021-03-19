@@ -6,18 +6,20 @@ const initialState = {
   loading: false,
   purchased: false,
 };
-
+const purchaseSandwichSuccess = (state, action) => {
+  const newData = updateObject(action.orderData, { id: action.orderId });
+  return updateObject(state, {
+    loading: false,
+    purchased: true,
+    orders: state.orders.concat(newData),
+  });
+};
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_SANDWICH_START:
       return updateObject(state, { loading: true });
     case actionTypes.PURCHASE_SANDWICH_SUCCESS:
-      const newData = updateObject(action.orderData, { id: action.orderId });
-      return updateObject(state, {
-        loading: false,
-        purchased: true,
-        orders: state.orders.concat(newData),
-      });
+      return purchaseSandwichSuccess(state, action);
     case actionTypes.PURCHASE_SANDWICH_FAIL:
       return updateObject(state, { loading: false });
     case actionTypes.FETCH_ORDERS_START:
