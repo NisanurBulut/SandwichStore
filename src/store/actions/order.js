@@ -5,8 +5,7 @@ export const purchaseSandwichSuccess = (orderData) => {
   return {
     type: actionTypes.PURCHASE_SANDWICH_SUCCESS,
     orderId: orderData.id,
-    orderData: orderData,
-    loading: false,
+    orderData: orderData
   };
 };
 
@@ -44,7 +43,11 @@ export const fetchOrdersStart = () => {
     type: actionTypes.FETCH_ORDERS_START,
   };
 };
-
+export const setOrderFinish = () => {
+  return {
+    type: actionTypes.SET_ORDER_FINISH,
+  };
+};
 export const fetchOrdersSuccess = (orders) => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,

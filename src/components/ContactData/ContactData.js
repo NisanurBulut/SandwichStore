@@ -73,6 +73,7 @@ class ContactData extends Component {
       formElement = <Spinner />;
     }
     if (this.props.purchased) {
+      this.props.onSetOrderSandwinchFinish();
       formElement = <Redirect to="/" />;
     }
     return (
@@ -99,6 +100,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onOrderSandwich: (orderData) =>
       dispatch(actionTypes.purchaseSandwich(orderData)),
+      onSetOrderSandwinchFinish: () => {
+      dispatch(actionTypes.setOrderFinish());
+    },
   };
 };
 export default connect(
