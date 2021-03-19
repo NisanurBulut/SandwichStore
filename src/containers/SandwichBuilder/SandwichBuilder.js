@@ -10,7 +10,7 @@ import axios from '../../services/general-service';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import * as sandwichBuilderActionTypes from '../../store/actions/index';
-
+import imagePath from '../../assests/images/san2_.png';
 class SandwichBuilder extends Component {
   state = {
     purchasing: false,
@@ -72,6 +72,9 @@ class SandwichBuilder extends Component {
                 ordered={this.purchaseHandler}
               />
             </div>
+          </div>
+          <div className={classes.row}>
+            <img src={imagePath} className={classes.sandwichBuilder} />
           </div>
         </Auxiliary>
       );
