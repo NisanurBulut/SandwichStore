@@ -6,18 +6,54 @@ export const authStart = () => {
     type: actionTypes.AUTH_START,
   };
 };
-
-export const authSucces = (authData) => {
+export const registerStart = () => {
+  return {
+    type: actionTypes.REGISTER_START,
+  };
+};
+export const authSuccess = (authData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     authData: authData,
   };
 };
-
+export const registerSuccess = (authData) => {
+  return {
+    type: actionTypes.REGISTER_SUCCESS,
+    authData: authData,
+  };
+};
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
+  };
+};
+export const registerFail = (error) => {
+  return {
+    type: actionTypes.REGISTER_FAIL,
+    error: error,
+  };
+};
+export const register = (email, password) => {
+  return (dispatch) => {
+    dispatch(registerStart());
+    const data = { email: email, password: password };
+    axios
+      .post('register', data)
+      .then((response) => {
+        const responseData = {
+          email: email,
+          password: password,
+          accessToken: response.data.accessToken,
+        };
+        console.log(responseData);
+        dispatch(registerSuccess(responseData));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(registerFail(err));
+      });
   };
 };
 
@@ -34,7 +70,7 @@ export const auth = (email, password) => {
           accessToken: response.data.accessToken,
         };
         console.log(responseData);
-        dispatch(authSucces(responseData));
+        dispatch(authSuccess(responseData));
       })
       .catch((err) => {
         console.log(err);
