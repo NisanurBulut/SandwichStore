@@ -25,23 +25,20 @@ export const auth = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
     const data = { email: email, password: password };
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: password }),
-    };
-    console.log(requestOptions);
-
     axios
-    .post('login', data)
-    .then((response) => {
-      console.log(response);
-      dispatch(authSucces(response.data));
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch(authFail(err));
-    });
+      .post('login', data)
+      .then((response) => {
+        const responseData = {
+          email: email,
+          password: password,
+          accessToken: response.data.accessToken,
+        };
+        console.log(responseData);
+        dispatch(authSucces(responseData));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(authFail(err));
+      });
   };
 };
