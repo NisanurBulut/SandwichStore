@@ -1,14 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "nisanur@gmail.com",
-      "password": "1"
-    },
-    {
-      "email": "nisanur@gmail.com",
-      "password": "1",
-      "id": 10
+      "email": "olivier@mail.com",
+      "password": "bestPassw0rd",
+      "firstname": "Olivier",
+      "lastname": "Monge",
+      "age": 32
     }
   ],
   "ingredients": {

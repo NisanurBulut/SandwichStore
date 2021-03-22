@@ -25,13 +25,14 @@ export const auth = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
     const data = { email: email, password: password };
-    console.log(data);
     axios
-    .post('users', data)
+    .post('login', JSON.stringify(data))
     .then((response) => {
+      console.log(response);
       dispatch(authSucces(response.data));
     })
     .catch((err) => {
+      console.log(err);
       dispatch(authFail(err));
     });
   };
