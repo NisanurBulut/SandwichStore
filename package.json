@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "axios-delay": "^1.0.0-rc6",
     "json-server": "^0.16.3",
+    "json-server-auth": "^2.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -23,7 +24,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "test": "json-server --watch src/db.json --p 3001",
+    "test": "json-server --watch src/db.json -m ./node_modules/json-server-auth --p 3001",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "start": "react-scripts start"
