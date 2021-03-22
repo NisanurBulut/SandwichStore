@@ -1,4 +1,9 @@
 {
+  "apples":[
+    {
+      "email":"ece@gmail.com",
+    "password":"1"    }
+  ],
   "ingredients": {
     "meat": 0,
     "salad": 0,

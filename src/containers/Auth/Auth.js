@@ -40,6 +40,7 @@ export class Auth extends Component {
                 icon="user"
                 iconPosition="left"
                 placeholder="E-mail address"
+                required
               />
               <Form.Input
                 fluid
@@ -48,6 +49,7 @@ export class Auth extends Component {
                 placeholder="Password"
                 type="password"
                 name="password"
+                required
               />
 
               <Button color="red" fluid size="large">

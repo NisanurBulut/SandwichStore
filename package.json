@@ -8,8 +8,6 @@
     "@testing-library/user-event": "^12.7.0",
     "axios": "^0.21.1",
     "axios-delay": "^1.0.0-rc6",
-    "json-server": "^0.16.3",
-    "json-server-auth": "^2.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -46,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-server": "^0.16.3",
+    "json-server-auth": "^2.0.2"
   }
 }
