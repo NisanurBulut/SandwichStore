@@ -49,6 +49,7 @@ export class Auth extends Component {
                 placeholder="Password"
                 type="password"
                 name="password"
+                value="bestPassw0rd"
                 required
               />
 
