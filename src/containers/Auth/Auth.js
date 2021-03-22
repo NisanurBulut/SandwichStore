@@ -13,13 +13,28 @@ import imageLogo from '../../assests/images/sanwich-logo.PNG';
 import * as actions from '../../store/actions/index';
 
 export class Auth extends Component {
-  loginHandler = (event) => {
+  state = {
+    isSignUp: false,
+  };
+  submitFormHandler = (event) => {
     event.preventDefault();
     const loginData = {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,
     };
-   this.props.onAuth(loginData.email, loginData.password);
+    if (this.state.isSignUp) {
+      this.props.onRegister(loginData.email, loginData.password);
+    } else {
+      this.props.onAuth(loginData.email, loginData.password);
+    }
+  };
+  loginHandler = (event) => {
+    event.preventDefault();
+    this.setState({ isSignUp: false });
+  };
+  registerHandler = (event) => {
+    event.preventDefault();
+    this.setState({ isSignUp: true });
   };
   render() {
     const LoginForm = (
@@ -32,7 +47,7 @@ export class Auth extends Component {
           <Header as="h2" color="red" textAlign="center">
             <Image src={imageLogo} /> Log-in to your account
           </Header>
-          <Form size="large" onSubmit={this.loginHandler}>
+          <Form size="large" onSubmit={this.submitFormHandler}>
             <Segment stacked>
               <Form.Input
                 fluid
@@ -53,13 +68,18 @@ export class Auth extends Component {
                 required
               />
 
-              <Button color="red" fluid size="large">
+              <Button
+                color="red"
+                fluid
+                size="large"
+                onClick={this.loginHandler}
+              >
                 Login
               </Button>
             </Segment>
           </Form>
           <Message>
-            New to us? <a href="#">Sign Up</a>
+            New to us? <a onClick={this.registerHandler}>Sign Up</a>
           </Message>
         </Grid.Column>
       </Grid>
@@ -70,6 +90,8 @@ export class Auth extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password) => dispatch(actions.auth(email, password)),
+    onRegister: (email, password) =>
+      dispatch(actions.register(email, password)),
   };
 };
 export default connect(null, mapDispatchToProps)(Auth);
