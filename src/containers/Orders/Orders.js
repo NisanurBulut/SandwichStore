@@ -18,7 +18,7 @@ class Orders extends Component {
       return <Spinner />;
     } else {
       return (
-        <Grid columns={4}>
+        <Grid columns={3}>
           <Grid.Row>
             <Transition.Group className={classes.Orders}>
               {this.props.orders.map((order) => (
