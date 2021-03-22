@@ -17,6 +17,7 @@ export class Auth extends Component {
     isSignUp: false,
   };
   submitFormHandler = (event) => {
+    debugger;
     event.preventDefault();
     const loginData = {
       email: event.target.elements.email.value,
@@ -73,6 +74,7 @@ export class Auth extends Component {
                 fluid
                 size="large"
                 onClick={this.loginHandler}
+                type="submit"
               >
                 Login
               </Button>
