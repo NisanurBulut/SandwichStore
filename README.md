@@ -12,6 +12,9 @@ If you like or are using this project to learn or start your solution, please gi
 - The orders are listed.
 - Using the Redux pattern is done.
 - Sandwich price is calculated using Redux pattern.
+- The user can register and log in to the application.
+- If the user is logged in, he / she displays the Logout link on toobar.
+- User has token information after login.With this token, you can make transactions in the application.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
