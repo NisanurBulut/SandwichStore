@@ -89,8 +89,8 @@ export class Auth extends Component {
         </Grid.Column>
       </Grid>
     );
-    if (this.props.state.isAuthenticated) {
-      <Redirect to="/" />;
+    if (this.props.isAuthenticated) {
+     return <Redirect to="/" />;
     } else {
       return <div>{LoginForm}</div>;
     }
