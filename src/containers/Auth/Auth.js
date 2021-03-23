@@ -14,28 +14,17 @@ import * as actions from '../../store/actions/index';
 
 export class Auth extends Component {
   state = {
-    isSignUp: false,
+    email: '',
+    password: 'bestPassw0rd',
   };
-  submitFormHandler = (event) => {
-    debugger;
-    event.preventDefault();
-    const loginData = {
-      email: event.target.elements.email.value,
-      password: event.target.elements.password.value,
-    };
-    if (this.state.isSignUp) {
-      this.props.onRegister(loginData.email, loginData.password);
-    } else {
-      this.props.onAuth(loginData.email, loginData.password);
-    }
-  };
+
   loginHandler = (event) => {
     event.preventDefault();
-    this.setState({ isSignUp: false });
+    this.props.onAuth(this.state.email, this.state.password);
   };
   registerHandler = (event) => {
     event.preventDefault();
-    this.setState({ isSignUp: true });
+    this.props.onRegister(this.state.email, this.state.password);
   };
   render() {
     const LoginForm = (
@@ -48,7 +37,7 @@ export class Auth extends Component {
           <Header as="h2" color="red" textAlign="center">
             <Image src={imageLogo} /> Log-in to your account
           </Header>
-          <Form size="large" onSubmit={this.submitFormHandler}>
+          <Form size="large">
             <Segment stacked>
               <Form.Input
                 fluid
@@ -56,6 +45,8 @@ export class Auth extends Component {
                 icon="user"
                 iconPosition="left"
                 placeholder="E-mail address"
+                value={this.state.email}
+                onChange={(e) => this.setState({ email: e.target.value })}
                 required
               />
               <Form.Input
@@ -65,8 +56,9 @@ export class Auth extends Component {
                 placeholder="Password"
                 type="password"
                 name="password"
-                value="bestPassw0rd"
                 required
+                value={this.state.password}
+                onChange={(e) => this.setState({ password: e.target.value })}
               />
 
               <Button

@@ -61,6 +61,7 @@ export const auth = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
     const data = { email: email, password: password };
+    console.log(data);
     axios
       .post('login', data)
       .then((response) => {

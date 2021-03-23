@@ -4,6 +4,11 @@
       "email": "nisanur@gmail.com",
       "password": "$2a$10$5aleejLr/qCFQ3UOB9Q9mudM/FmjFDg6KTiiBCsJ6gCSqcb54sFMK",
       "id": 1
+    },
+    {
+      "email": "nisanurrun@gmail.com",
+      "password": "$2a$10$LE4FYwYqCgHpZ2uGdouh8uHxec8w2nbN8irQW83Du5kZu5TsGk.uK",
+      "id": 2
     }
   ],
   "ingredients": {
