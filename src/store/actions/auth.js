@@ -6,11 +6,7 @@ export const authStart = () => {
     type: actionTypes.AUTH_START,
   };
 };
-export const registerStart = () => {
-  return {
-    type: actionTypes.REGISTER_START,
-  };
-};
+
 export const authSuccess = (authData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
@@ -23,21 +19,16 @@ export const registerSuccess = (authData) => {
     authData: authData,
   };
 };
+
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
   };
 };
-export const registerFail = (error) => {
-  return {
-    type: actionTypes.REGISTER_FAIL,
-    error: error,
-  };
-};
 export const register = (email, password) => {
   return (dispatch) => {
-    dispatch(registerStart());
+    dispatch(authStart());
     const data = { email: email, password: password };
     axios
       .post('register', data)
@@ -52,7 +43,7 @@ export const register = (email, password) => {
       })
       .catch((err) => {
         console.log(err);
-        dispatch(registerFail(err));
+        dispatch(authFail(err));
       });
   };
 };
