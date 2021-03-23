@@ -1,15 +1,11 @@
 .row {
   display: flex;
   align-items: center;
+  width: 100% !important;
   justify-content: center;
 }
 
 .column {
   width: 50%;
   padding: 10px;
-}
-
-img {
-  margin-top: 10%;
-  max-height: 300px;
 }

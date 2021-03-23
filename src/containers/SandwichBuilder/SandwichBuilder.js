@@ -58,16 +58,10 @@ class SandwichBuilder extends Component {
     if (this.props.ings) {
       sandwichElement = (
         <Auxiliary>
-          <div className={classes.row}>
-            <div className={classes.column}>
-              <Sandwich
-                className={classes.column}
+           <Sandwich className={classes.row}
                 ingredients={this.props.ings}
               />
-            </div>
-            <div className={classes.column}>
-              <BuildControls
-                className={classes.column}
+                   <BuildControls
                 ingredientAdded={this.props.onIngredientAdded}
                 ingredientRemoved={this.props.onIngredientRemoved}
                 disabled={disabledInfo}
@@ -76,11 +70,7 @@ class SandwichBuilder extends Component {
                 ordered={this.purchaseHandler}
                 isAuth={this.props.isAuthenticated}
               />
-            </div>
-          </div>
-          <div className={classes.row}>
-            <img src={imagePath} className={classes.sandwichBuilder} />
-          </div>
+
         </Auxiliary>
       );
       orderSummaryElement = (
