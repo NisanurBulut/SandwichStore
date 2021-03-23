@@ -10,6 +10,7 @@ import App from './App';
 import 'semantic-ui-css/semantic.min.css';
 import sandwichBuilderReducer from './store/reducers/sandwichBuilder';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSIONS_COMPOSE__ || compose;
@@ -17,6 +18,7 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   sandwichBuilder: sandwichBuilderReducer,
   order: orderReducer,
+  auth: authReducer
 });
 
 const store = createStore(
