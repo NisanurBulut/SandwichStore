@@ -22,6 +22,16 @@ The user cannot view the order list of other users.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
+### API
+
+| Method   | Url                               | Parameters                                                                                              |
+|----------|-----------------------------------|---------------------------------------------------------------------------------------------------------|
+| login    | POST localhost:3001/login         | { email:"", password:"" }                                                                               |
+| register | POST localhost:3001/login         | { email:"", password:"" }                                                                               |
+| orders   | GET localhost:3001/orders?userId= | { token:"", userId:""}                                                                                  |
+| order    | POST localhost:3001/orders        | { deliveryMethod:"fastest", userId:"", ingredients:[], price:0, customer:{name:"",address:"",email:""}} |
+
+
 ### Installations
 
 - npm install json-server json-server-auth
