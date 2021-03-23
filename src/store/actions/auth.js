@@ -21,6 +21,12 @@ export const authFail = (error) => {
     error: error,
   };
 };
+
+export const authLogout = ()=>{
+  return {
+    type:actionTypes.AUTH_LOGOUT
+  }
+}
 export const register = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
