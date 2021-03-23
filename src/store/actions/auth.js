@@ -7,16 +7,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (authData) => {
+export const authSuccess = (accessToken, email) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: authData,
-  };
-};
-export const registerSuccess = (authData) => {
-  return {
-    type: actionTypes.REGISTER_SUCCESS,
-    authData: authData,
+    token: accessToken,
+    userId: email,
   };
 };
 
@@ -33,13 +28,7 @@ export const register = (email, password) => {
     axios
       .post('register', data)
       .then((response) => {
-        const responseData = {
-          email: email,
-          password: password,
-          accessToken: response.data.accessToken,
-        };
-        console.log(responseData);
-        dispatch(registerSuccess(responseData));
+        dispatch(authSuccess(response.data.accessToken,email));
       })
       .catch((err) => {
         console.log(err);
@@ -56,13 +45,7 @@ export const auth = (email, password) => {
     axios
       .post('login', data)
       .then((response) => {
-        const responseData = {
-          email: email,
-          password: password,
-          accessToken: response.data.accessToken,
-        };
-        console.log(responseData);
-        dispatch(authSuccess(responseData));
+        dispatch(authSuccess(response.data.accessToken,email));
       })
       .catch((err) => {
         console.log(err);

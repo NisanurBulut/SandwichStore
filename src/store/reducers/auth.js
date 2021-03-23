@@ -9,7 +9,7 @@ const initialState = {
 };
 const authSuccess = (state, action) => {
   return updateObject(state, {
-    token: action.accessToken,
+    token: action.token,
     userId: action.email,
     error: null,
     loading: false,
