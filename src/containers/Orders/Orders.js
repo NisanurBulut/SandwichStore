@@ -18,10 +18,10 @@ class Orders extends Component {
     } else {
       return (
         <Grid columns={3}>
-          <Grid.Row>
-            <Transition.Group className={classes.Orders}>
+          <Grid.Row className={classes.Orders}>
+            <Transition.Group>
               {this.props.orders.map((order) => (
-                <Grid.Column>
+                <Grid.Column key={order.id}>
                   <Order
                     key={order.id}
                     ingredients={order.ingredients}
