@@ -71,12 +71,13 @@ export const fetchOrdersFail = (error) => {
   };
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
+    const queryParams = '?userId=' + userId;
     axios
       .get(
-        'orders',
+        'orders' + queryParams,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,7 +85,7 @@ export const fetchOrders = (token) => {
         },
         {
           delay: 1000,
-        },
+        }
       )
       .then((response) => {
         const fetchedOrders = [];

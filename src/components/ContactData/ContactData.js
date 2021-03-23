@@ -29,8 +29,9 @@ class ContactData extends Component {
         email: event.target.elements.email.value,
       },
       deliveryMethod: 'fastest',
+      userId: this.props.userId,
     };
-
+    console.log(order);
     this.props.onOrderSandwich(order, this.props.token);
   };
   render() {
@@ -94,6 +95,7 @@ const mapStateToProps = (state) => {
     loading: state.order.loading,
     purchased: state.order.purchased,
     token: state.auth.token,
+    userId: state.auth.userId,
   };
 };
 

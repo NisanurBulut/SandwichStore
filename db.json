@@ -6,7 +6,7 @@
       "id": 1
     },
     {
-      "email": "nisanurrun@gmail.com",
+      "email": "ece@gmail.com",
       "password": "$2a$10$LE4FYwYqCgHpZ2uGdouh8uHxec8w2nbN8irQW83Du5kZu5TsGk.uK",
       "id": 2
     }
@@ -21,82 +21,53 @@
     {
       "ingredients": {
         "salad": 1,
-        "bacon": 0,
-        "cheese": 0,
-        "meat": 0
+        "bacon": 1,
+        "cheese": 1,
+        "meat": 1
       },
-      "price": 0.5,
+      "price": 2.9000000000000004,
       "customer": {
-        "name": "Nisanur Bulut",
-        "address": "Eskişehir"
+        "name": "Nisanur",
+        "address": "Eskişehir",
+        "email": "nisanur@gmail.com"
       },
-      "email": "nisanur@gmail.com",
       "deliveryMethod": "fastest",
+      "userId": "nisanur@gmail.com",
       "id": 1
     },
     {
       "ingredients": {
         "salad": 1,
         "bacon": 1,
-        "cheese": 0,
-        "meat": 0
+        "cheese": 1,
+        "meat": 1
       },
-      "price": 1.2,
+      "price": 2.9000000000000004,
       "customer": {
-        "name": "Nisanur Bulut",
-        "address": "Eskişehir"
+        "name": "Melis",
+        "address": "Bursa",
+        "email": "melis@gmail.com"
       },
-      "email": "nisanur@gmail.com",
       "deliveryMethod": "fastest",
+      "userId": "nisanur@gmail.com",
       "id": 2
     },
     {
       "ingredients": {
-        "meat": 0,
-        "salad": 0,
-        "cheese": 0,
-        "bacon": 1
+        "salad": 1,
+        "bacon": 1,
+        "cheese": 1,
+        "meat": 1
       },
-      "price": 0.7,
+      "price": 2.9000000000000004,
       "customer": {
-        "name": "Nisanur Bulut",
-        "address": "Eskişehir"
+        "name": "Ece",
+        "address": "Eskişehir",
+        "email": "ece@gmail.com"
       },
-      "email": "nisanur@gmail.com",
       "deliveryMethod": "fastest",
+      "userId": "ece@gmail.com",
       "id": 3
-    },
-    {
-      "ingredients": {
-        "salad": 1,
-        "bacon": 1,
-        "cheese": 0,
-        "meat": 0
-      },
-      "price": 1.2,
-      "customer": {
-        "name": "test",
-        "address": "Eskişehir",
-        "email": "nisanur@gmail.com"
-      },
-      "deliveryMethod": "fastest",
-      "id": 4
-    },
-    {
-      "ingredients": {
-        "salad": 1,
-        "bacon": 1,
-        "cheese": 0,
-        "meat": 0
-      },
-      "price": 1.2,
-      "customer": {
-        "name": "test",
-        "address": "Eskişehir",
-        "email": "nisanur@gmail.com"
-      },
-      "deliveryMethod": "fastest",
-      "id": 5
     }
   ]
 }

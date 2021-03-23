@@ -10,7 +10,7 @@ const initialState = {
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
-    userId: action.email,
+    userId: action.userId,
     error: null,
     loading: false,
   });
