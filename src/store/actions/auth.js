@@ -8,6 +8,8 @@ export const authStart = () => {
 };
 
 export const authSuccess = (accessToken, email) => {
+  localStorage.setItem('token', accessToken);
+  localStorage.setItem('userId', email);
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: accessToken,
@@ -22,11 +24,13 @@ export const authFail = (error) => {
   };
 };
 
-export const authLogout = ()=>{
+export const authLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userId');
   return {
-    type:actionTypes.AUTH_LOGOUT
-  }
-}
+    type: actionTypes.AUTH_LOGOUT,
+  };
+};
 export const register = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
@@ -34,7 +38,7 @@ export const register = (email, password) => {
     axios
       .post('register', data)
       .then((response) => {
-        dispatch(authSuccess(response.data.accessToken,email));
+        dispatch(authSuccess(response.data.accessToken, email));
       })
       .catch((err) => {
         console.log(err);
@@ -51,11 +55,23 @@ export const auth = (email, password) => {
     axios
       .post('login', data)
       .then((response) => {
-        dispatch(authSuccess(response.data.accessToken,email));
+        dispatch(authSuccess(response.data.accessToken, email));
       })
       .catch((err) => {
         console.log(err);
         dispatch(authFail(err));
       });
+  };
+};
+
+export const authCheckState = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    if (!token) {
+      dispatch(authLogout());
+    } else {
+      dispatch(authSuccess(token, userId));
+    }
   };
 };
