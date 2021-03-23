@@ -16,6 +16,7 @@ If you like or are using this project to learn or start your solution, please gi
 - If the user is logged in, he / she displays the Logout link on toobar.
 - User has token information after login.With this token, you can make transactions in the application.
 - If the user is not logged in, they cannot view the order list and purchase screens.
+- If the user is not logged in, she has her order prepared and when she wants to place an order, she is directed to the login page.
 
 ![Sandwich Store](https://github.com/NisanurBulut/SandwichBuilder/blob/master/Trailers/Trailer_SandwichStore.gif)
 
