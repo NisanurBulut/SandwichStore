@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.REGISTER_SUCCESS:
       return authSuccess(state, action);
     case actionTypes.AUTH_LOGOUT:
-      return authSuccess(state, action);
+      return authLogout(state, action);
     default:
       return state;
   }
