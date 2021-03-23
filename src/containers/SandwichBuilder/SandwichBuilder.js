@@ -19,7 +19,11 @@ class SandwichBuilder extends Component {
     this.props.onInitIngredients();
   }
   purchaseHandler = () => {
-    this.setState({ purchasing: true });
+    if(this.props.isAuthenticated){
+      this.setState({ purchasing: true });
+    }else{
+      this.props.history.push('/auth')
+    }
   };
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
@@ -70,6 +74,7 @@ class SandwichBuilder extends Component {
                 price={this.props.price}
                 purchasable={this.updatePurchaseState(this.props.ings)}
                 ordered={this.purchaseHandler}
+                isAuth={this.props.isAuthenticated}
               />
             </div>
           </div>
@@ -106,7 +111,8 @@ const mapStateToProps = (state) => {
   return {
     ings: state.sandwichBuilder.ingredients,
     price: state.sandwichBuilder.totalPrice,
-    error: state.sandwichBuilder.error
+    error: state.sandwichBuilder.error,
+    isAuthenticated: state.auth.token !== null,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -115,8 +121,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionTypes.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
       dispatch(actionTypes.removeIngredient(ingName)),
-    onInitIngredients: () =>
-      dispatch(actionTypes.initIngredients())
+    onInitIngredients: () => dispatch(actionTypes.initIngredients()),
   };
 };
 
