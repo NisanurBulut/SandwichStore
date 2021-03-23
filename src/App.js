@@ -1,13 +1,13 @@
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 import Layout from './hoc/Layout/Layout';
 import SandwichBuilder from './containers/SandwichBuilder/SandwichBuilder';
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout';
-import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
 
 class App extends Component {
@@ -33,4 +33,4 @@ const mapDispatchToProps = (dispatch) => {
     onTryAutoLogin: () => dispatch(actions.authCheckState()),
   };
 };
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));
