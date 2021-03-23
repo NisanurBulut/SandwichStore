@@ -5,7 +5,7 @@ export const purchaseSandwichSuccess = (orderData) => {
   return {
     type: actionTypes.PURCHASE_SANDWICH_SUCCESS,
     orderId: orderData.id,
-    orderData: orderData
+    orderData: orderData,
   };
 };
 
@@ -22,13 +22,22 @@ export const purchaseSandwichStart = () => {
   };
 };
 
-export const purchaseSandwich = (orderData) => {
+export const purchaseSandwich = (orderData, token) => {
   return (dispatch) => {
     dispatch(purchaseSandwichStart());
     axios
-      .post('orders', orderData, {
-        delay: 1000,
-      })
+      .post(
+        'orders',
+        orderData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        {
+          delay: 1000,
+        }
+      )
       .then((response) => {
         dispatch(purchaseSandwichSuccess(response.data));
       })
@@ -62,13 +71,21 @@ export const fetchOrdersFail = (error) => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
     axios
-      .get('orders', {
-        delay: 1000,
-      })
+      .get(
+        'orders',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        {
+          delay: 1000,
+        },
+      )
       .then((response) => {
         const fetchedOrders = [];
         for (let key in response.data) {

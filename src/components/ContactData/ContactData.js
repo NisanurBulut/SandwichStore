@@ -31,7 +31,7 @@ class ContactData extends Component {
       deliveryMethod: 'fastest',
     };
 
-    this.props.onOrderSandwich(order);
+    this.props.onOrderSandwich(order, this.props.token);
   };
   render() {
     let formElement = (
@@ -93,14 +93,15 @@ const mapStateToProps = (state) => {
     price: state.sandwichBuilder.totalPrice,
     loading: state.order.loading,
     purchased: state.order.purchased,
+    token: state.auth.token,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderSandwich: (orderData) =>
-      dispatch(actionTypes.purchaseSandwich(orderData)),
-      onSetOrderSandwinchFinish: () => {
+    onOrderSandwich: (orderData, token) =>
+      dispatch(actionTypes.purchaseSandwich(orderData, token)),
+    onSetOrderSandwinchFinish: () => {
       dispatch(actionTypes.setOrderFinish());
     },
   };
