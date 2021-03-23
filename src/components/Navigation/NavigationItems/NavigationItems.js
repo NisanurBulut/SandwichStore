@@ -5,14 +5,14 @@ import NavigationItem from '../NavigationItem/NavigationItem';
 const NavigationItems = (props) => {
   return (
     <ul className={classes.NavigationItems}>
-      <NavigationItem link="/" exact>
-        Sandwich
-      </NavigationItem>
-      <NavigationItem link="/orders">Orders</NavigationItem>
       {props.isAuthenticated === false ? (
         <NavigationItem link="/auth">Authenticate</NavigationItem>
       ) : (
-        <NavigationItem link="/logout">Logout</NavigationItem>
+        <>
+          <NavigationItem link="/" exact> Sandwich</NavigationItem>
+          <NavigationItem link="/orders">Orders</NavigationItem>
+          <NavigationItem link="/logout">Logout</NavigationItem>
+        </>
       )}
     </ul>
   );
